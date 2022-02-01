@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">JeuAndroid</string>
+    <string name="textView">Ceci est une textView</string>
+    <string name="Jouer">Jouer</string>
+    <string name="Paramètre">Paramètres</string>
+    <string name="Quitter">Quitter</string>
+</resources>
