@@ -1,5 +1,7 @@
 package fr.iuttest.jeuandroid.model.test;
 
+import java.util.ArrayList;
+
 public class Stub {
 
     public static Personnages create(){
