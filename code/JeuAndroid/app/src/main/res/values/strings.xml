@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">JeuAndroid</string>
-    <string name="textView">Ceci est une textView</string>
+    <string name="textView">Jeu mobile</string>
     <string name="Jouer">Jouer</string>
     <string name="Paramètre">Paramètres</string>
     <string name="Quitter">Quitter</string>
+    <string name="retour">Retour</string>
+    <string name="test_recycler_view">Test recycler view</string>
 </resources>

@@ -1,4 +1,4 @@
-package fr.iuttest.jeuandroid.model;
+package fr.iuttest.jeuandroid.model.jeu;
 
 //classe métier direction
 public class Direction {

@@ -1,4 +1,4 @@
-package fr.iuttest.jeuandroid.model;
+package fr.iuttest.jeuandroid.model.jeu;
 
 //interface qui définie la méthode d'observation d'une boucle
 public interface Observer {

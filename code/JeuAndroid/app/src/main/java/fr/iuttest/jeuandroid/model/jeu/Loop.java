@@ -1,4 +1,4 @@
-package fr.iuttest.jeuandroid.model;
+package fr.iuttest.jeuandroid.model.jeu;
 
 import java.util.ArrayList;
 

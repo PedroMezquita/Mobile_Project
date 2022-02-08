@@ -5,8 +5,13 @@
       <map>
         <entry key="../../../../../../../etud/flbuhot/2A/android/dev-mobile/code/JeuAndroid/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.21354166666666666" />
         <entry key="../../../../../../../etud/flbuhot/2A/android/dev-mobile/code/JeuAndroid/app/src/main/res/drawable/ic_launcher_background.xml" value="0.21354166666666666" />
+        <entry key="../../../../../../../etud/flbuhot/2A/android/dev-mobile/code/JeuAndroid/app/src/main/res/layout-land/fenetre_parametre.xml" value="0.1" />
         <entry key="../../../../../../../etud/flbuhot/2A/android/dev-mobile/code/JeuAndroid/app/src/main/res/layout-land/fenetre_principal.xml" value="0.25" />
+        <entry key="../../../../../../../etud/flbuhot/2A/android/dev-mobile/code/JeuAndroid/app/src/main/res/layout-land/test_recycler_view.xml" value="0.2296875" />
+        <entry key="../../../../../../../etud/flbuhot/2A/android/dev-mobile/code/JeuAndroid/app/src/main/res/layout/cases.xml" value="0.19972826086956522" />
+        <entry key="../../../../../../../etud/flbuhot/2A/android/dev-mobile/code/JeuAndroid/app/src/main/res/layout/fenetre_parametre.xml" value="0.33" />
         <entry key="../../../../../../../etud/flbuhot/2A/android/dev-mobile/code/JeuAndroid/app/src/main/res/layout/fenetre_principal.xml" value="0.5" />
+        <entry key="../../../../../../../etud/flbuhot/2A/android/dev-mobile/code/JeuAndroid/app/src/main/res/layout/test_recycler_view.xml" value="0.20697463768115942" />
         <entry key="../../../../../../../etud/flbuhot/2A/android/dev-mobile/code/JeuAndroid/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.21354166666666666" />
       </map>
     </option>

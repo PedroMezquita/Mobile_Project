@@ -1,4 +1,4 @@
-package fr.iuttest.jeuandroid.model.attack;
+package fr.iuttest.jeuandroid.model.jeu.attack;
 
 //classe métier AttackPattern servant à décrire l'attaque d'un personnage afin de le faire attaquer
 public class AttackPattern {

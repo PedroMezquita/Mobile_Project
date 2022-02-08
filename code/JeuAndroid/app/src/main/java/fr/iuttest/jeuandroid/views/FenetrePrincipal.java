@@ -1,5 +1,6 @@
 package fr.iuttest.jeuandroid.views;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,22 +16,20 @@ import fr.iuttest.jeuandroid.R;
 
 public class FenetrePrincipal extends AppCompatActivity {
 
-    private TextView textView;
-
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fenetre_principal);
-        textView = findViewById(R.id.textView);
     }
 
     public void clickJouer(View view) {
-        textView.setText(R.string.Jouer);
+        Intent intent = new Intent(this,TestRecyclerView.class);
+        startActivity(intent);
     }
 
     public void clickParametre(View view) {
-        textView.setText(R.string.Paramètre);
+        Intent intent = new Intent(this,FenetreParametre.class);
+        startActivity(intent);
     }
 
     public void clickQuitter(View view) {
