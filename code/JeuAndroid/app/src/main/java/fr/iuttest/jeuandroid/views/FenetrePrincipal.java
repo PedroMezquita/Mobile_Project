@@ -13,6 +13,9 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import fr.iuttest.jeuandroid.R;
+import fr.iuttest.jeuandroid.model.test.Personnages;
+import fr.iuttest.jeuandroid.model.test.Stub;
+import fr.iuttest.jeuandroid.views.fragment.FragmentMaster;
 
 public class FenetrePrincipal extends AppCompatActivity {
 
@@ -23,7 +26,7 @@ public class FenetrePrincipal extends AppCompatActivity {
     }
 
     public void clickJouer(View view) {
-        Intent intent = new Intent(this,TestRecyclerView.class);
+        Intent intent = new Intent(this, MasterDetailPerso.class);
         startActivity(intent);
     }
 

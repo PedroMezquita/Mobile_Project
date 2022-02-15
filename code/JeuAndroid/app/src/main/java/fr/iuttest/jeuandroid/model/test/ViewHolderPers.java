@@ -8,18 +8,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import fr.iuttest.jeuandroid.R;
 
-public class ViewHolder extends RecyclerView.ViewHolder {
+public class ViewHolderPers extends RecyclerView.ViewHolder {
 
     private TextView textView;
 
-    public ViewHolder(@NonNull View itemView) {
-
+    public ViewHolderPers(@NonNull View itemView) {
         super(itemView);
-
-        textView = (TextView) itemView.findViewById(R.id.textView);;
+        textView = (TextView) itemView.findViewById(R.id.textViewEtud);;
     }
 
-    public TextView getTextView() {
-        return textView;
-    }
+    public TextView getTextView() { return textView; }
 }

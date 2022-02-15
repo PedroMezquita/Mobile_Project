@@ -3,7 +3,7 @@ package fr.iuttest.jeuandroid.model.test;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,30 +12,24 @@ import java.util.List;
 
 import fr.iuttest.jeuandroid.R;
 
-public class MonAdaptateur extends RecyclerView.Adapter<ViewHolder>{
+public class MonAdaptateur extends RecyclerView.Adapter{
 
-    private List<Object> list; //Je pense qu'il faudra faire de 'String', ou ça prend automatiquement le toString ?
-    private List<String> listString;
+    private List<Personnage> list;
 
-    public MonAdaptateur(List<Object> list) {
-        this.list = list;
-        for (Object obj : list){
-            listString.add(obj.toString());
-        }
-    }
+    public MonAdaptateur(List<Personnage> list) { this.list = list; }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.test_recycler_view, parent , false);
-        return new ViewHolder(view);
+    public ViewHolderPers onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        LinearLayout layout = (LinearLayout) LayoutInflater.from(parent.getContext()).inflate(R.layout.cellule_recycler_view, parent , false);
+        return new ViewHolderPers(layout);
     }
 
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.getTextView().setText(listString.get(position));
-        //down cast holder en ViewHolder
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        Personnage perso = list.get(position);
+        ((ViewHolderPers)holder).getTextView().setText(perso.getNom());
     }
 
     @Override
