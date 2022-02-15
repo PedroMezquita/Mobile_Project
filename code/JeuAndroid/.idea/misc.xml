@@ -20,10 +20,17 @@
         <entry key="../../../../../../../etud/flbuhot/2A/android/dev-mobile/code/JeuAndroid/app/src/main/res/layout/test_recycler_view.xml" value="0.20697463768115942" />
         <entry key="../../../../../../../etud/flbuhot/2A/android/dev-mobile/code/JeuAndroid/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.21354166666666666" />
         <entry key="../../../../../../../etud/pemezquita/Documents/Android/dev-mobile/code/JeuAndroid/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.35625" />
+        <entry key="../../../../../../../etud/pemezquita/Documents/Android/dev-mobile/code/JeuAndroid/app/src/main/res/layout-land/fenetre_parametre.xml" value="0.24479166666666666" />
+        <entry key="../../../../../../../etud/pemezquita/Documents/Android/dev-mobile/code/JeuAndroid/app/src/main/res/layout-land/fenetre_principal.xml" value="0.24479166666666666" />
         <entry key="../../../../../../../etud/pemezquita/Documents/Android/dev-mobile/code/JeuAndroid/app/src/main/res/layout-land/test_recycler_view.xml" value="0.22" />
+        <entry key="../../../../../../../etud/pemezquita/Documents/Android/dev-mobile/code/JeuAndroid/app/src/main/res/layout/cellule_recycler_view.xml" value="0.16540020263424518" />
+        <entry key="../../../../../../../etud/pemezquita/Documents/Android/dev-mobile/code/JeuAndroid/app/src/main/res/layout/fenetre_jeu.xml" value="0.18115942028985507" />
         <entry key="../../../../../../../etud/pemezquita/Documents/Android/dev-mobile/code/JeuAndroid/app/src/main/res/layout/fenetre_parametre.xml" value="0.24818840579710144" />
         <entry key="../../../../../../../etud/pemezquita/Documents/Android/dev-mobile/code/JeuAndroid/app/src/main/res/layout/fenetre_principal.xml" value="0.24818840579710144" />
+        <entry key="../../../../../../../etud/pemezquita/Documents/Android/dev-mobile/code/JeuAndroid/app/src/main/res/layout/fragment_details.xml" value="0.16" />
+        <entry key="../../../../../../../etud/pemezquita/Documents/Android/dev-mobile/code/JeuAndroid/app/src/main/res/layout/fragment_master.xml" value="0.21" />
         <entry key="../../../../../../../etud/pemezquita/Documents/Android/dev-mobile/code/JeuAndroid/app/src/main/res/layout/layout_niveau1.xml" value="0.24818840579710144" />
+        <entry key="../../../../../../../etud/pemezquita/Documents/Android/dev-mobile/code/JeuAndroid/app/src/main/res/layout/list_personnages.xml" value="0.16822916666666668" />
         <entry key="../../../../../../../etud/pemezquita/Documents/Android/dev-mobile/code/JeuAndroid/app/src/main/res/layout/perso_select_recycler_view.xml" value="0.1" />
         <entry key="../../../../../../../etud/pemezquita/Documents/Android/dev-mobile/code/JeuAndroid/app/src/main/res/layout/test_recycler_view.xml" value="0.24818840579710144" />
         <entry key="../../../../../../../etud/pemezquita/Documents/Android/dev-mobile/code/JeuAndroid/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.35625" />

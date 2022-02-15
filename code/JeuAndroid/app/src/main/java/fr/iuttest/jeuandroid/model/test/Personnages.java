@@ -3,19 +3,22 @@ package fr.iuttest.jeuandroid.model.test;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.iuttest.jeuandroid.model.jeu.entities.Joueur;
+import fr.iuttest.jeuandroid.model.jeu.entities.Personnage;
+
 public class Personnages {
 
-    private List<Personnage> listPerso;
+    private List<Joueur> listPerso;
 
     public Personnages() {
-        listPerso = new ArrayList<Personnage>(){};
+        listPerso = new ArrayList<Joueur>(){};
     }
 
-    public void addPerso(Personnage perso){
+    public void addPerso(Joueur perso){
         listPerso.add(perso);
     }
 
-    public List<Personnage> getListPerso() {
+    public List<Joueur> getListPerso() {
         return listPerso;
     }
 }

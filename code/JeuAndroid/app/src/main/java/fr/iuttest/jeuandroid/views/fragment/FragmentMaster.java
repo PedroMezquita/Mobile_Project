@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import fr.iuttest.jeuandroid.model.jeu.entities.Personnage;
 import fr.iuttest.jeuandroid.R;
 import fr.iuttest.jeuandroid.model.test.MonAdaptateur;
 import fr.iuttest.jeuandroid.views.FenetrePrincipal;

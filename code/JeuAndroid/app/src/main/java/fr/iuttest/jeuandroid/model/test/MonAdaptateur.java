@@ -11,12 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import fr.iuttest.jeuandroid.R;
+import fr.iuttest.jeuandroid.model.jeu.entities.Joueur;
+import fr.iuttest.jeuandroid.model.jeu.entities.Personnage;
 
 public class MonAdaptateur extends RecyclerView.Adapter{
 
-    private List<Personnage> list;
+    private List<Joueur> list;
 
-    public MonAdaptateur(List<Personnage> list) { this.list = list; }
+    public MonAdaptateur(List<Joueur> list) { this.list = list; }
 
     @NonNull
     @Override
@@ -28,8 +30,9 @@ public class MonAdaptateur extends RecyclerView.Adapter{
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        Personnage perso = list.get(position);
-        ((ViewHolderPers)holder).getTextView().setText(perso.getNom());
+        Joueur perso = list.get(position);
+        ((ViewHolderPers)holder).getTextView().setText(perso.getName());
+        ((ViewHolderPers)holder).getTextViewStats().setText(perso.toString());
     }
 
     @Override

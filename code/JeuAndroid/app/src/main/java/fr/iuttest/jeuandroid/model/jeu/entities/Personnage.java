@@ -59,10 +59,10 @@ public abstract class Personnage extends Entite {
         this.speed = speed;
     }
 
-//    @Override
-//    public String toString(){
-//        return "atk : "+atkPnt+", max hp : "+maxHP+", current hp : "+currentHP+", speed : "+speed;
-//    }
+    @Override
+    public String toString(){
+        return "atk : "+atkPnt+", max hp : "+maxHP+", current hp : "+currentHP+", speed : "+speed;
+    }
 
     public void setAttaque(AttackPattern attaque) {
         this.attaque = attaque;
