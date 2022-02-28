@@ -1,21 +1,14 @@
 package fr.iuttest.jeuandroid.views;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import fr.iuttest.jeuandroid.R;
-import fr.iuttest.jeuandroid.model.test.Personnages;
-import fr.iuttest.jeuandroid.model.test.Stub;
-import fr.iuttest.jeuandroid.views.fragment.FragmentMaster;
+import fr.iuttest.jeuandroid.views.fragment.MasterDetailPerso;
 
 public class FenetrePrincipal extends AppCompatActivity {
 

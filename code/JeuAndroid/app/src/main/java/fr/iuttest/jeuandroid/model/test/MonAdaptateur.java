@@ -1,7 +1,6 @@
 package fr.iuttest.jeuandroid.model.test;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
@@ -12,7 +11,6 @@ import java.util.List;
 
 import fr.iuttest.jeuandroid.R;
 import fr.iuttest.jeuandroid.model.jeu.entities.Joueur;
-import fr.iuttest.jeuandroid.model.jeu.entities.Personnage;
 
 public class MonAdaptateur extends RecyclerView.Adapter{
 
@@ -31,7 +29,8 @@ public class MonAdaptateur extends RecyclerView.Adapter{
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         Joueur perso = list.get(position);
-        ((ViewHolderPers)holder).getTextView().setText(perso.getName());
+        ((ViewHolderPers)holder).setPersoEnCours(perso);
+        ((ViewHolderPers)holder).getButton().setText(perso.getName());
         ((ViewHolderPers)holder).getTextViewStats().setText(perso.toString());
     }
 

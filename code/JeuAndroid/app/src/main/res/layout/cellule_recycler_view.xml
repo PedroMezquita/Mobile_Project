@@ -7,7 +7,7 @@
     android:background="@drawable/template_background">
 
     <Button
-        android:id="@+id/buttonViewEtud"
+        android:id="@+id/buttonViewPerso"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="clickJeu"

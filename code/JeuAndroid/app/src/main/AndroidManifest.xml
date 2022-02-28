@@ -18,8 +18,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".views.FenetreParametre" />
-        <activity android:name=".views.MasterDetailPerso" />
+        <activity android:name=".views.fragment.MasterDetailPerso" />
         <activity android:name=".views.FenetreJeu" />
+        <activity android:name=".views.fragment.FenetreInfoPerso" />
     </application>
 
 </manifest>

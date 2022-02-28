@@ -8,19 +8,26 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import fr.iuttest.jeuandroid.R;
+import fr.iuttest.jeuandroid.model.jeu.entities.Joueur;
+import fr.iuttest.jeuandroid.model.jeu.entities.Personnage;
+import fr.iuttest.jeuandroid.views.fragment.MasterDetailPerso;
 
 public class ViewHolderPers extends RecyclerView.ViewHolder {
 
-    private TextView textView;
+    private Button button;
     private TextView textViewStats;
 
     public ViewHolderPers(@NonNull View itemView) {
         super(itemView);
-        textView = (Button) itemView.findViewById(R.id.buttonViewEtud);
+        button = (Button) itemView.findViewById(R.id.buttonViewPerso);
         textViewStats = (TextView) itemView.findViewById(R.id.textViewStats);
     }
 
-    public TextView getTextView() { return textView; }
-
+    public TextView getButton() { return button; }
     public TextView getTextViewStats() {return  textViewStats; }
+
+    public void setPersoEnCours(Joueur persoEnCours){
+        button.setOnClickListener(v -> {
+            ((MasterDetailPerso) button.getContext()).setPersoEnCours(persoEnCours);});
+    }
 }
