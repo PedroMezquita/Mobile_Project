@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="fr.iuttest.jeuandroid">
 
     <application
@@ -20,7 +21,8 @@
         <activity android:name=".views.FenetreParametre" />
         <activity android:name=".views.fragment.MasterDetailPerso" />
         <activity android:name=".views.FenetreJeu" />
-        <activity android:name=".views.fragment.FenetreInfoPerso" />
+        <activity android:name=".views.fragment.FenetreInfoPerso"
+            tools:ignore="Instantiatable" />
     </application>
 
 </manifest>

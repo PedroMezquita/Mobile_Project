@@ -12,6 +12,7 @@ import fr.iuttest.jeuandroid.model.jeu.entities.Joueur;
 import fr.iuttest.jeuandroid.model.jeu.entities.Personnage;
 import fr.iuttest.jeuandroid.model.test.Personnages;
 import fr.iuttest.jeuandroid.model.test.Stub;
+import fr.iuttest.jeuandroid.views.FenetreJeu;
 import fr.iuttest.jeuandroid.views.FenetrePrincipal;
 import fr.iuttest.jeuandroid.views.fragment.FenetreInfoPerso;
 import fr.iuttest.jeuandroid.views.fragment.FragmentMaster;
@@ -53,7 +54,7 @@ public class MasterDetailPerso extends AppCompatActivity {
     }
 
     public void clickJeu(View view) {
-        Intent intent = new Intent(this, FenetrePrincipal.class);
+        Intent intent = new Intent(this, FenetreJeu.class);
         startActivity(intent);
     }
 
