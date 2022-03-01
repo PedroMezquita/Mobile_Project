@@ -27,6 +27,6 @@ public class FragmentMaster extends Fragment {
         activiteParent = (MasterDetailPerso) getContext();
         RecyclerView listView = view.findViewById(R.id.list_perso);
         listView.setLayoutManager(new LinearLayoutManager(activiteParent));
-        listView.setAdapter(new MonAdaptateur(activiteParent.getListPerso().getListPerso()));
+        listView.setAdapter(new MonAdaptateur(activiteParent.getListPerso().getListPerso(), activiteParent));
     }
 }

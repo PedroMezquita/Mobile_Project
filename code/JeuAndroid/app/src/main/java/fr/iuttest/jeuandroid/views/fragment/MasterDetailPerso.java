@@ -57,6 +57,8 @@ public class MasterDetailPerso extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void clickRetourMenu(View view){finish();}
+
     public Personnages getListPerso() { return listPerso; }
     public Joueur getPersoEnCours() {return persoEnCours;}
 }

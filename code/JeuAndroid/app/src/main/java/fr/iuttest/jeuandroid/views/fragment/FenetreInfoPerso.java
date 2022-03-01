@@ -33,20 +33,10 @@ public class FenetreInfoPerso extends Fragment {
     private void updateData() {
         if(getActivity() != null){
             if(activiteParente.getPersoEnCours() != null){
-                ((TextView) getActivity().findViewById(R.id.stat_perso)).setText(valueOf(activiteParente.getPersoEnCours().getAtkPnt()));
-                ((TextView) getActivity().findViewById(R.id.stat_perso)).setText(valueOf(activiteParente.getPersoEnCours().getAtkPnt()));
-                ((TextView) getActivity().findViewById(R.id.stat_perso)).setText(valueOf(activiteParente.getPersoEnCours().getAtkPnt()));
-                ((TextView) getActivity().findViewById(R.id.stat_perso)).setText(valueOf(activiteParente.getPersoEnCours().getAtkPnt()));
-            }
-            else {
-                try {
-                    ((TextView) getActivity().findViewById(R.id.stat_perso)).setText("----");
-                    Toast totot = new Toast(activiteParente);
-                    totot.setText("------------");
-                    totot.show();
-                } catch (NullPointerException e) {
-                    //Absorbtion de l'exception qui survient lorsque l'on passe de paysage à portrait et qui est du à la disparition du fragment.
-                }
+                ((TextView) getActivity().findViewById(R.id.stat_perso1)).setText(valueOf(activiteParente.getPersoEnCours().getName()));
+                ((TextView) getActivity().findViewById(R.id.stat_perso2)).setText("Attaque : "+valueOf(activiteParente.getPersoEnCours().getAtkPnt()));
+                ((TextView) getActivity().findViewById(R.id.stat_perso3)).setText("Attaque : "+valueOf(activiteParente.getPersoEnCours().getAtkPnt()));
+                ((TextView) getActivity().findViewById(R.id.stat_perso4)).setText("Attaque : "+valueOf(activiteParente.getPersoEnCours().getAtkPnt()));
             }
         }
     }
