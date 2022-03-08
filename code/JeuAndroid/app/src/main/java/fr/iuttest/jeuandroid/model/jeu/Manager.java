@@ -1,11 +1,5 @@
 package fr.iuttest.jeuandroid.model.jeu;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.VibrationAttributes;
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import fr.iuttest.jeuandroid.data.Niveau;
 import fr.iuttest.jeuandroid.data.Niveau1;
 import fr.iuttest.jeuandroid.data.Niveau2;
@@ -18,12 +12,9 @@ import fr.iuttest.jeuandroid.model.jeu.attack.BasiqueAttacker;
 import fr.iuttest.jeuandroid.model.jeu.collisions.CollisioneurCarre;
 import fr.iuttest.jeuandroid.model.jeu.deplacement.DeplacerBasique;
 import fr.iuttest.jeuandroid.model.jeu.deplacement.Deplaceur;
-import fr.iuttest.jeuandroid.model.jeu.entities.Ennemi;
 import fr.iuttest.jeuandroid.model.jeu.entities.Joueur;
 import fr.iuttest.jeuandroid.model.jeu.entities.Personnage;
 import fr.iuttest.jeuandroid.model.jeu.maps.Map;
-import fr.iuttest.jeuandroid.views.FenetreJeu;
-import fr.iuttest.jeuandroid.views.ViewManager;
 
 /*
 //import data.*;
@@ -42,7 +33,7 @@ import fr.iuttest.jeuandroid.views.ViewManager;
 //import java.lang.reflect.Method;
 //import java.util.*;
 //
-public class Manager implements Observer{
+public class Manager {
 
     //liste des touches appuyées
 //    private HashSet<KeyCode> listeTouches = new HashSet<KeyCode>();
@@ -54,26 +45,14 @@ public class Manager implements Observer{
     private Map map;
     //joueur actuel
     private Joueur joueur;
-    //ennemie
-    private Ennemi ennemie;
     //boucle du joueur
     private Loop beep;
     //boucle des ennemis
     private Loop beepEnnemi;
     //numéro du niveau
     private Niveau lvl;
-    // gère la vue
-    private ViewManager monViewManager;
-
-    private Activity activityParente;
 
     public Manager (){
-        init();
-    }
-
-    public Manager (AppCompatActivity activity, Joueur perso){
-        activityParente = activity;
-        joueur = perso;
         init();
     }
 
@@ -85,10 +64,9 @@ public class Manager implements Observer{
         lvl.getLast().setNiveauSuivant(new Niveau4());
         lvl.getLast().setNiveauSuivant(new Niveau5());
         map = lvl.load();
-        ennemie = new Ennemi(50,100,100,2,10,10,50,50,"méchant",10,10,10);
-        monViewManager = new ViewManager(joueur, ennemie, activityParente);
-        joueur.addObserver(monViewManager);
-
+        map.setWidth(500);
+        map.setHeight(500);
+        joueur = map.getJoueur();
         /*
         addKeyEvent(KeyCode.RIGHT,  "deplacerDroite");
         addKeyEvent(KeyCode.LEFT, "deplacerGauche");
@@ -109,11 +87,10 @@ public class Manager implements Observer{
         beepEnnemi = new Loop(200);
 
         beep.attacher(new MainObserver(this));
-
+*/
         beepEnnemi.attacher(new EnnemiObserver(this));
         beep.start();
         beepEnnemi.start();
-        */
     }
 
     public Map getMap() {
@@ -287,8 +264,4 @@ public class Manager implements Observer{
         beepEnnemi.interrupt();
     }
 
-    @Override
-    public void update() {
-
-    }
 }
