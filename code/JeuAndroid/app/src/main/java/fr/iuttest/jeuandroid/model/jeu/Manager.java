@@ -58,15 +58,20 @@ public class Manager {
 
     //charge le premier niveau et les controles
     public void init (){
+
         lvl = new Niveau1();
         lvl.getLast().setNiveauSuivant(new Niveau2());
         lvl.getLast().setNiveauSuivant(new Niveau3());
         lvl.getLast().setNiveauSuivant(new Niveau4());
         lvl.getLast().setNiveauSuivant(new Niveau5());
+
         map = lvl.load();
-        map.setWidth(500);
-        map.setHeight(500);
+
+        //map.setWidth(500);
+        //map.setHeight(500);
         joueur = map.getJoueur();
+
+
         /*
         addKeyEvent(KeyCode.RIGHT,  "deplacerDroite");
         addKeyEvent(KeyCode.LEFT, "deplacerGauche");
@@ -88,9 +93,9 @@ public class Manager {
 
         beep.attacher(new MainObserver(this));
 */
-        beepEnnemi.attacher(new EnnemiObserver(this));
-        beep.start();
-        beepEnnemi.start();
+        //beepEnnemi.attacher(new EnnemiObserver(this));
+        //beep.start();
+        //beepEnnemi.start();
     }
 
     public Map getMap() {
