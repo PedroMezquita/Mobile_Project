@@ -2,15 +2,19 @@ package fr.iuttest.jeuandroid.views;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Person;
 import android.content.res.Resources;
 import android.media.Image;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import fr.iuttest.jeuandroid.R;
@@ -19,14 +23,16 @@ import fr.iuttest.jeuandroid.model.jeu.Loop;
 import fr.iuttest.jeuandroid.model.jeu.Manager;
 import fr.iuttest.jeuandroid.model.jeu.attack.AtkUpdater;
 import fr.iuttest.jeuandroid.model.jeu.deplacement.DeplacerBasique;
+import fr.iuttest.jeuandroid.model.jeu.entities.Entite;
 import fr.iuttest.jeuandroid.model.jeu.entities.Joueur;
 import fr.iuttest.jeuandroid.model.jeu.entities.Personnage;
+import fr.iuttest.jeuandroid.model.jeu.maps.Map;
 import fr.iuttest.jeuandroid.views.fragment.MasterDetailPerso;
 
 public class FenetreJeu extends AppCompatActivity {
 
     private Manager manager;
-    private ConstraintLayout layout_jeu;
+    private FrameLayout layout_jeu;
     private ImageView perso;
     private ImageView enemi;
     private Loop beep;
@@ -42,19 +48,20 @@ public class FenetreJeu extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.fenetre_jeu);
+
         this.activiteParente = getParent();
         manager = new Manager();
-        setContentView(R.layout.fenetre_jeu);
+        layout_jeu = (FrameLayout) findViewById(R.id.jeu);
     }
 
 
     @Override
     protected void onStart() {
         super.onStart();
+        chargementMap(manager.getMap());
         perso = (ImageView) findViewById(R.id.imageView);
-
         enemi = (ImageView) findViewById(R.id.imageViewEnemmi);
-        layout_jeu = (ConstraintLayout) findViewById(R.id.jeu);
         initLoop();
 
         //SUPER IDEE DU PROF: Faire un observeur pour notifier l'Image View lors qu'on change l'objet
@@ -75,55 +82,27 @@ public class FenetreJeu extends AppCompatActivity {
                     initialPositiony = motionEvent.getY();
 
                 case MotionEvent.ACTION_MOVE:
-                    if (motionEvent.getX() > initialPositionx+100 && motionEvent.getY() > initialPositiony+100){
-                        //System.out.println(initialPositionx);
-                        //System.out.println("oui");
-                        perso.setX(perso.getX()+5);                 //a changer par des deplaceurs
-                        perso.setY(perso.getY()+5);
-                        //deplaceur.deplacer(new Joueur(2,2,3,3,"Bob",2,2,2,2,"2",2,2,3), new Direction(1,-1));
-                    }else if(motionEvent.getX() > initialPositionx+100 && motionEvent.getY() < initialPositiony-100) {
-
-                        perso.setX(perso.getX()+5);                 //a changer par des deplaceurs
-                        perso.setY(perso.getY()-5);
-                        //System.out.println(initialPositionx+initialPositionx/2);
-                        //System.out.println(motionEvent.getX());
-                    }else if(motionEvent.getX() < initialPositionx-100 && motionEvent.getY() > initialPositiony+100) {
-
+                    if(motionEvent.getX() < initialPositionx-100) {
+//                        manager.deplacerGauche();
+//                        manager.updatePositionImages(perso);
                         perso.setX(perso.getX()-5);                 //a changer par des deplaceurs
-                        perso.setY(perso.getY()+5);
-                        //System.out.println(initialPositionx+initialPositionx/2);
-                        //System.out.println(motionEvent.getX());
-                    }else if(motionEvent.getX() < initialPositionx-100 && motionEvent.getY() < initialPositiony-100) {
-
-                    perso.setX(perso.getX()-5);                 //a changer par des deplaceurs
-                    perso.setY(perso.getY()-5);
-                    //System.out.println(initialPositionx+initialPositionx/2);
-                    //System.out.println(motionEvent.getX());
-                    }else if(motionEvent.getX() < initialPositionx-100) {
-
-                        perso.setX(perso.getX()-5);                 //a changer par des deplaceurs
-                        //perso.setY(perso.getY()-5);
-                        //System.out.println(initialPositionx+initialPositionx/2);
-                        //System.out.println(motionEvent.getX());
                     }else if(motionEvent.getX() > initialPositionx+100) {
 
+//                        manager.deplacerDroite();
+//                        manager.updatePositionImages(perso);
                         perso.setX(perso.getX()+5);                 //a changer par des deplaceurs
-                        //perso.setY(perso.getY()-5);
-                        //System.out.println(initialPositionx+initialPositionx/2);
-                        //System.out.println(motionEvent.getX());
-                    }
-                    else if(motionEvent.getY() > initialPositiony+100) {
 
+                    }
+                    if(motionEvent.getY() > initialPositiony+100) {
+
+//                        manager.deplacerHaut();
+//                        manager.updatePositionImages(perso);
                         perso.setY(perso.getY()+5);                 //a changer par des deplaceurs
-                        //perso.setY(perso.getY()-5);
-                        //System.out.println(initialPositionx+initialPositionx/2);
-                        //System.out.println(motionEvent.getX());
                     }else if(motionEvent.getY() < initialPositiony-100) {
 
+//                        manager.deplacerBas();
+//                        manager.updatePositionImages(perso);
                         perso.setY(perso.getY()-5);                 //a changer par des deplaceurs
-                        //perso.setY(perso.getY()-5);
-                        //System.out.println(initialPositionx+initialPositionx/2);
-                        //System.out.println(motionEvent.getX());
                     }
             }
 
@@ -167,7 +146,21 @@ public class FenetreJeu extends AppCompatActivity {
           beepEnnemi.start();
 //
         }
-/*
+
+    public void chargementMap(Map map){
+        for (Entite ent: map.getAllEntities()) {
+            ImageView img = new ImageView(this);
+            //Ajouter id au constructeur de la map donc chaque objet peut avoir un id de type R.string...
+            img.setImageResource(ent.getSprite());
+            img.setY(ent.getPos().getxPos());
+            img.setX(ent.getPos().getyPos());
+            FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(ent.getxSize(), ent.getySize());
+            layout_jeu.addView(img, lp);
+        }
+
+    }
+
+        /*
     public void updateAttaque(){
         joueur.getAttaque().setCurrentcooldown(joueur.getAttaque().getCurrentcooldown()-1);
         AtkUpdater updater = new AtkUpdater();

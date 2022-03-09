@@ -33,7 +33,7 @@ public class Map {
 
     private int width;
     private int height;
-    private String image;
+    private int image;
 
     public void addEntity(Entite entity) {
         allEntities.add(entity);
@@ -122,11 +122,11 @@ public class Map {
         return (ArrayList<Attack>) allAttacks.clone();
     }
 
-    public String getImage() {
+    public int getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(int image) {
         this.image = image;
     }
 

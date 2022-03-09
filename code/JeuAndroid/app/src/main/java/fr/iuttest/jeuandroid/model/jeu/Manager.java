@@ -1,5 +1,7 @@
 package fr.iuttest.jeuandroid.model.jeu;
 
+import android.widget.ImageView;
+
 import fr.iuttest.jeuandroid.data.Niveau;
 import fr.iuttest.jeuandroid.data.Niveau1;
 import fr.iuttest.jeuandroid.data.Niveau2;
@@ -14,6 +16,7 @@ import fr.iuttest.jeuandroid.model.jeu.deplacement.DeplacerBasique;
 import fr.iuttest.jeuandroid.model.jeu.deplacement.Deplaceur;
 import fr.iuttest.jeuandroid.model.jeu.entities.Joueur;
 import fr.iuttest.jeuandroid.model.jeu.entities.Personnage;
+import fr.iuttest.jeuandroid.model.jeu.entities.Position;
 import fr.iuttest.jeuandroid.model.jeu.maps.Map;
 
 /*
@@ -71,17 +74,6 @@ public class Manager {
         //map.setHeight(500);
         joueur = map.getJoueur();
 
-
-        /*
-        addKeyEvent(KeyCode.RIGHT,  "deplacerDroite");
-        addKeyEvent(KeyCode.LEFT, "deplacerGauche");
-        addKeyEvent(KeyCode.UP, "deplacerHaut");
-        addKeyEvent(KeyCode.DOWN, "deplacerBas");
-        addKeyEvent(KeyCode.Z, "attaqueHaut");
-        addKeyEvent(KeyCode.S, "attaqueBas");
-        addKeyEvent(KeyCode.Q, "attaqueGauche");
-        addKeyEvent(KeyCode.D, "attaqueDroite");
-*/
         initLoop();
     }
 
@@ -101,41 +93,9 @@ public class Manager {
     public Map getMap() {
         return map;
     }
-/*
-    public void addTouche (KeyCode s){
-        listeTouches.add(s);
-    }
 
-    public void removeTouche (KeyCode s){
-        listeTouches.remove(s);
-    }
 
-    public HashSet<KeyCode> getListeTouches() {
-        return listeTouches;
-    }
 
-    public void resetListeTouches(){
-        listeTouches = new HashSet<KeyCode>();
-    }
-
-    public void addKeyEvent (KeyCode touche, String method){
-        keyEvents.put(touche, method);
-        reversedKeyEvents.put(method,touche);
-    }
-
-    //lit la liste des touches appuyées et en effectue les actions
-    public void readKeys (){
-        for (Iterator<KeyCode> it = listeTouches.iterator(); it.hasNext(); ) {
-            KeyCode touche = it.next();
-            try {
-                Method method = this.getClass().getMethod(keyEvents.get(touche));
-                method.invoke(this);
-            }
-            catch (Exception e){
-            }
-        }
-    }
-*/
 
     //appel le déplaceur pour déplacer le joueur à droite
     public void deplacerDroite () {
@@ -174,44 +134,6 @@ public class Manager {
         }
     }
 
-/*
-
-    //de meme en bas
-     public void attaqueBas () {
-        if (listeTouches.contains(reversedKeyEvents.get("attaqueHaut"))){
-            return;
-        }
-        BasiqueAttacker attacker = new BasiqueAttacker();
-        Attack attaque = attacker.attack(joueur, new Direction(0, 1));
-         if (attaque != null) {
-             map.addAttack(attaque);
-         }
-    }
-
-    //de meme à gauche
-      public void attaqueGauche () {
-          if (listeTouches.contains(reversedKeyEvents.get("attaqueHaut")) || listeTouches.contains(reversedKeyEvents.get("attaqueBas"))){
-              return;
-          }
-        BasiqueAttacker attacker = new BasiqueAttacker();
-        Attack attaque = attacker.attack(joueur, new Direction(-1, 0));
-          if (attaque != null) {
-              map.addAttack(attaque);
-          }
-    }
-
-    //de meme à droite
-     public void attaqueDroite () {
-         if (listeTouches.contains(reversedKeyEvents.get("attaqueHaut")) || listeTouches.contains(reversedKeyEvents.get("attaqueGauche")) || listeTouches.contains(reversedKeyEvents.get("attaqueBas"))){
-             return;
-         }
-        BasiqueAttacker attacker = new BasiqueAttacker();
-        Attack attaque = attacker.attack(joueur, new Direction(1, 0));
-         if (attaque != null) {
-             map.addAttack(attaque);
-         }
-    }
-    */
 
     //appel le pathfincding et un déplaceur pour déplacer l'ennemi
     public void updateEnemi(){
@@ -267,6 +189,14 @@ public class Manager {
     public void stopBoucle(){
         beep.interrupt();
         beepEnnemi.interrupt();
+    }
+
+
+    public ImageView updatePositionImages(ImageView pers){
+        Position pos = joueur.getPos();
+        pers.setX(pos.getxPos());
+        pers.setY(pos.getyPos());
+        return pers;
     }
 
 }
