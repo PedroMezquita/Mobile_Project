@@ -36,12 +36,12 @@ public class Niveau2 extends Niveau{
         Props obstacle6 = new Props(50,10,225,245,"croixHorizontale");
         obstacle6.setSprite(R.drawable.template_wall);
         map.addEntity(obstacle6);
-        Personnage joueur = new Joueur(1,10,10,5,"mec", 41, 41,20,20,"joueur", 1,0,0); //Le joueur charge avant les props
-        joueur.setSprite(R.drawable.template_character);
-        AttackPattern atqJoueur = new AttackPattern(10, 1, 15, 15, "bouleDeFeu", 10);
-        atqJoueur.setRGB(1,0,0);
-        joueur.setAttaque(atqJoueur);
-        map.addEntity(joueur);
+//        Personnage joueur = new Joueur(1,10,10,5,"mec", 41, 41,20,20,"joueur", 1,0,0); //Le joueur charge avant les props
+//        joueur.setSprite(R.drawable.template_character);
+//        AttackPattern atqJoueur = new AttackPattern(10, 1, 15, 15, "bouleDeFeu", 10);
+//        atqJoueur.setRGB(1,0,0);
+//        joueur.setAttaque(atqJoueur);
+//        map.addEntity(joueur);
         Ennemi ennemi = new Ennemi(1,10,10,15, 50, 50, 200, 400, "ennemi1", 1,1,0);
         ennemi.setSprite(R.drawable.template_ennemi);
         AttackPattern atqEnemi = new AttackPattern(5,1,15,5,"slime",2);

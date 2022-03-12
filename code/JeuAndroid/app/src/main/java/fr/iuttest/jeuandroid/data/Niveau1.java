@@ -31,12 +31,12 @@ public class Niveau1 extends Niveau{
         obstacle4.setRGB(0,0,0);
         obstacle4.setSprite(R.drawable.template_wall);
         map.addEntity(obstacle4);
-        Personnage joueur = new Joueur(1,10,10,5,"mec", /* 21*/ 201, /* 21*/201,20,20,"joueur", 1,0,0); //Le joueur charge avant les props
-        joueur.setSprite(R.drawable.template_character);
-        AttackPattern atqJoueur = new AttackPattern(25, 2, 10, 25, "trait", 50);
-        atqJoueur.setRGB(0.5,0.5,1);
-        joueur.setAttaque(atqJoueur);
-        map.addEntity(joueur);
+//        Personnage joueur = new Joueur(1,10,10,5,"mec", /* 21*/ 201, /* 21*/201,20,20,"joueur", 1,0,0); //Le joueur charge avant les props
+//        joueur.setSprite(R.drawable.template_character);
+//        AttackPattern atqJoueur = new AttackPattern(25, 2, 10, 25, "trait", 50);
+//        atqJoueur.setRGB(0.5,0.5,1);
+//        joueur.setAttaque(atqJoueur);
+//        map.addEntity(joueur);
         Ennemi ennemi = new Ennemi(1,1,1,5, 55, 55, 250, 400, "ennemi1", 1,1,0);
         ennemi.setSprite(R.drawable.template_ennemi);
         AttackPattern atqEnemi = new AttackPattern(20,1,55,55,"slime",5);

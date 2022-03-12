@@ -1,8 +1,10 @@
 package fr.iuttest.jeuandroid.model.jeu.entities;
 
 
+import java.io.Serializable;
+
 //classe métier Position qui représente la position d'une entité
-public class Position {
+public class Position implements Serializable {
     //position horizontale
     private int xPos;  //Trouver un equivalent des integer property
     //position verticale

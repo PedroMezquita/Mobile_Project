@@ -48,6 +48,8 @@ public class Manager {
     private Map map;
     //joueur actuel
     private Joueur joueur;
+    //ImageView du joueur actu
+    private ImageView joueurView;
     //boucle du joueur
     private Loop beep;
     //boucle des ennemis
@@ -159,10 +161,12 @@ public class Manager {
     public Joueur getJoueur() {
         return joueur;
     }
-
     public void setJoueur(Joueur joueur) {
         this.joueur = joueur;
     }
+
+    public ImageView getJoueurView() { return joueurView; }
+    public void setJoueurView(ImageView joueurView) { this.joueurView = joueurView; }
 
     public Loop getBeep() {
         return beep;
@@ -199,5 +203,4 @@ public class Manager {
         pers.setY(pos.getyPos());
         return pers;
     }
-
 }

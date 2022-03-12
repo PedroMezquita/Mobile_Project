@@ -55,6 +55,7 @@ public class MasterDetailPerso extends AppCompatActivity {
 
     public void clickJeu(View view) {
         Intent intent = new Intent(this, FenetreJeu.class);
+        intent.putExtra("persoEnCours", persoEnCours);
         startActivity(intent);
     }
 

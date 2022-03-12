@@ -1,40 +1,30 @@
 package fr.iuttest.jeuandroid.views;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.Person;
-import android.content.res.Resources;
-import android.media.Image;
+import android.app.admin.SystemUpdateInfo;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
-import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatImageView;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import fr.iuttest.jeuandroid.R;
-import fr.iuttest.jeuandroid.model.jeu.Direction;
 import fr.iuttest.jeuandroid.model.jeu.Loop;
 import fr.iuttest.jeuandroid.model.jeu.Manager;
-import fr.iuttest.jeuandroid.model.jeu.attack.AtkUpdater;
 import fr.iuttest.jeuandroid.model.jeu.deplacement.DeplacerBasique;
 import fr.iuttest.jeuandroid.model.jeu.entities.Entite;
 import fr.iuttest.jeuandroid.model.jeu.entities.Joueur;
-import fr.iuttest.jeuandroid.model.jeu.entities.Personnage;
 import fr.iuttest.jeuandroid.model.jeu.maps.Map;
-import fr.iuttest.jeuandroid.views.fragment.MasterDetailPerso;
 
 public class FenetreJeu extends AppCompatActivity {
 
     private Manager manager;
     private FrameLayout layout_jeu;
-    private ImageView perso;
-    private ImageView enemi;
+    private ImageView persoView;
+    private ImageView enemiView;
+    private Joueur perso;
     private Loop beep;
     private Loop beepEnnemi;
     private Activity activiteParente;
@@ -53,6 +43,8 @@ public class FenetreJeu extends AppCompatActivity {
         this.activiteParente = getParent();
         manager = new Manager();
         layout_jeu = (FrameLayout) findViewById(R.id.jeu);
+        initialiserJoueur();
+        manager.setJoueur(perso);
     }
 
 
@@ -60,8 +52,7 @@ public class FenetreJeu extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         chargementMap(manager.getMap());
-        perso = (ImageView) findViewById(R.id.imageView);
-        enemi = (ImageView) findViewById(R.id.imageViewEnemmi);
+        enemiView = (ImageView) findViewById(R.id.imageViewEnemmi);
         initLoop();
 
         //SUPER IDEE DU PROF: Faire un observeur pour notifier l'Image View lors qu'on change l'objet
@@ -85,24 +76,23 @@ public class FenetreJeu extends AppCompatActivity {
                     if(motionEvent.getX() < initialPositionx-100) {
 //                        manager.deplacerGauche();
 //                        manager.updatePositionImages(perso);
-                        perso.setX(perso.getX()-5);                 //a changer par des deplaceurs
+                        persoView.setX(persoView.getX()-5); //a changer par des deplaceurs
                     }else if(motionEvent.getX() > initialPositionx+100) {
 
 //                        manager.deplacerDroite();
 //                        manager.updatePositionImages(perso);
-                        perso.setX(perso.getX()+5);                 //a changer par des deplaceurs
-
+                        persoView.setX(persoView.getX()+5);                 //a changer par des deplaceurs
                     }
                     if(motionEvent.getY() > initialPositiony+100) {
 
 //                        manager.deplacerHaut();
 //                        manager.updatePositionImages(perso);
-                        perso.setY(perso.getY()+5);                 //a changer par des deplaceurs
+                        persoView.setY(persoView.getY()+5);                 //a changer par des deplaceurs
                     }else if(motionEvent.getY() < initialPositiony-100) {
 
 //                        manager.deplacerBas();
 //                        manager.updatePositionImages(perso);
-                        perso.setY(perso.getY()-5);                 //a changer par des deplaceurs
+                        persoView.setY(persoView.getY()-5);                 //a changer par des deplaceurs
                     }
             }
 
@@ -136,8 +126,8 @@ public class FenetreJeu extends AppCompatActivity {
 
 
     public void initLoop(){
-          beep = new Loop(50, enemi, perso);
-          beepEnnemi = new Loop(200, enemi, perso);
+          beep = new Loop(50, enemiView, persoView);
+          beepEnnemi = new Loop(200, enemiView, persoView);
 
 //        beep.attacher(new MainObserver(this));
 //
@@ -158,6 +148,17 @@ public class FenetreJeu extends AppCompatActivity {
             layout_jeu.addView(img, lp);
         }
 
+    }
+
+    private void initialiserJoueur(){
+        perso = (Joueur) getIntent().getSerializableExtra("persoEnCours");
+        persoView = new ImageView(this);
+        persoView = (ImageView) findViewById(R.id.imageView);
+        persoView.setImageResource(perso.getSprite());
+        persoView.setMaxWidth(82);
+        persoView.setMaxHeight(95);
+        persoView.setX(500);
+        persoView.setY(100);
     }
 
         /*

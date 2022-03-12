@@ -1,7 +1,10 @@
 package fr.iuttest.jeuandroid.model.jeu.entities;
+
+import java.io.Serializable;
+
 //
 ////élément de base contenu dans une carte
-public abstract class Entite {
+public abstract class Entite implements Serializable {
     //taille horizontale
     private int xSize;
     //taille verticale
