@@ -17,7 +17,7 @@ public abstract class Entite {
     //valeur de vert de l'entité
     private double greenColor;
     //image
-    private String sprite;
+    private int sprite;
 
     public Entite(int xSize, int ySize, int xpos, int ypos, String id){
         this.xSize = xSize;
@@ -77,8 +77,8 @@ public abstract class Entite {
         this.blueColor = blueColor;
     }
 
-    public String getSprite(){return sprite;}
+    public int getSprite(){return sprite;}
 
-    public void setSprite(String sprite) {this.sprite = sprite;}
+    public void setSprite(int sprite) {this.sprite = sprite;}
 }
 //

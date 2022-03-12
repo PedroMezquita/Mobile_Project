@@ -23,7 +23,7 @@ public class AttackPattern {
     //valeur de bleu
     private double blueColor;
     //image
-    private String sprite;
+    private int sprite;
 
     public AttackPattern (int lifeTime, int degats, int xSize, int ySize, String id, int cooldown){
         this.lifeTime = lifeTime;
@@ -73,11 +73,11 @@ public class AttackPattern {
         return blueColor;
     }
 
-    public void setSprite(String sprite) {
+    public void setSprite(int sprite) {
         this.sprite = sprite;
     }
 
-    public String getSprite() {
+    public int getSprite() {
         return sprite;
     }
 

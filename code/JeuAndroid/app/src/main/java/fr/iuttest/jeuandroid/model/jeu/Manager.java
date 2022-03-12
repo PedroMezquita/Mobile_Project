@@ -68,6 +68,7 @@ public class Manager {
         lvl.getLast().setNiveauSuivant(new Niveau4());
         lvl.getLast().setNiveauSuivant(new Niveau5());
 
+        map = new Map();
         map = lvl.load();
 
         //map.setWidth(500);
