@@ -1,5 +1,6 @@
 package fr.iuttest.jeuandroid.views;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.admin.SystemUpdateInfo;
 import android.os.Bundle;
@@ -55,12 +56,14 @@ public class FenetreJeu extends AppCompatActivity {
         persoView.setMaxHeight(95);
         persoView.setX(500);
         persoView.setY(100);
+
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onStart() {
         super.onStart();
-        initLoop();
+//        initLoop();
 
         //SUPER IDEE DU PROF: Faire un observeur pour notifier l'Image View lors qu'on change l'objet
 
@@ -81,25 +84,25 @@ public class FenetreJeu extends AppCompatActivity {
 
                 case MotionEvent.ACTION_MOVE:
                     if(motionEvent.getX() < initialPositionx-100) {
-//                        manager.deplacerGauche();
+                        manager.deplacerGauche();
 //                        manager.updatePositionImages(perso);
-                        persoView.setX(persoView.getX()-5); //a changer par des deplaceurs
+//                        persoView.setX(persoView.getX()-5); //a changer par des deplaceurs
                     }else if(motionEvent.getX() > initialPositionx+100) {
 
-//                        manager.deplacerDroite();
+                        manager.deplacerDroite();
 //                        manager.updatePositionImages(perso);
-                        persoView.setX(persoView.getX()+5);                 //a changer par des deplaceurs
+//                        persoView.setX(persoView.getX()+5);                 //a changer par des deplaceurs
                     }
                     if(motionEvent.getY() > initialPositiony+100) {
 
-//                        manager.deplacerHaut();
+                        manager.deplacerBas();
 //                        manager.updatePositionImages(perso);
-                        persoView.setY(persoView.getY()+5);                 //a changer par des deplaceurs
+ //                       persoView.setY(persoView.getY()+5);                 //a changer par des deplaceurs
                     }else if(motionEvent.getY() < initialPositiony-100) {
 
-//                        manager.deplacerBas();
+                        manager.deplacerHaut();
 //                        manager.updatePositionImages(perso);
-                        persoView.setY(persoView.getY()-5);                 //a changer par des deplaceurs
+   //                     persoView.setY(persoView.getY()-5);                 //a changer par des deplaceurs
                     }
             }
 
@@ -131,7 +134,7 @@ public class FenetreJeu extends AppCompatActivity {
         beepEnnemi.interrupt();
     }
 
-
+/*
     public void initLoop(){
           beep = new Loop(50, enemiView, persoView);
           beepEnnemi = new Loop(200, enemiView, persoView);
@@ -143,7 +146,7 @@ public class FenetreJeu extends AppCompatActivity {
           beepEnnemi.start();
 //
         }
-
+*/
         /*
     public void updateAttaque(){
         joueur.getAttaque().setCurrentcooldown(joueur.getAttaque().getCurrentcooldown()-1);

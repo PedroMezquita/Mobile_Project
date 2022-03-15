@@ -18,6 +18,7 @@ import fr.iuttest.jeuandroid.R;
 import fr.iuttest.jeuandroid.model.jeu.Loop;
 import fr.iuttest.jeuandroid.model.jeu.Observer;
 import fr.iuttest.jeuandroid.model.jeu.PlayerObserver;
+import fr.iuttest.jeuandroid.model.jeu.attack.AttackPattern;
 import fr.iuttest.jeuandroid.model.jeu.entities.Ennemi;
 import fr.iuttest.jeuandroid.model.jeu.entities.Entite;
 import fr.iuttest.jeuandroid.model.jeu.entities.Joueur;
@@ -50,83 +51,7 @@ public class ViewManager implements Observer {
         this.map= map;
         this.parentActivity = parentActivity;
         this.layout_jeu = layout_jeu;
-        ennemiViews = new java.util.Map<Ennemi, ImageView>() {
-            @Override
-            public int size() {
-                return 0;
-            }
-
-            @Override
-            public boolean isEmpty() {
-                return false;
-            }
-
-            @Override
-            public boolean containsKey(@Nullable Object o) {
-                return false;
-            }
-
-            @Override
-            public boolean containsValue(@Nullable Object o) {
-                return false;
-            }
-
-            @Nullable
-            @Override
-            public ImageView get(@Nullable Object o) {
-                return null;
-            }
-
-            @Nullable
-            @Override
-            public ImageView put(Ennemi ennemi, ImageView imageView) {
-                return null;
-            }
-
-            @Nullable
-            @Override
-            public ImageView remove(@Nullable Object o) {
-                return null;
-            }
-
-            @Override
-            public void putAll(@NonNull java.util.Map<? extends Ennemi, ? extends ImageView> map) {
-
-            }
-
-            @Override
-            public void clear() {
-
-            }
-
-            @NonNull
-            @Override
-            public Set<Ennemi> keySet() {
-                return null;
-            }
-
-            @NonNull
-            @Override
-            public Collection<ImageView> values() {
-                return null;
-            }
-
-            @NonNull
-            @Override
-            public Set<Entry<Ennemi, ImageView>> entrySet() {
-                return null;
-            }
-
-            @Override
-            public boolean equals(@Nullable Object o) {
-                return false;
-            }
-
-            @Override
-            public int hashCode() {
-                return 0;
-            }
-        };
+        ennemiViews = new java.util.HashMap<Ennemi, ImageView>();
         chargementMap(map);
 
     }
@@ -144,6 +69,10 @@ public class ViewManager implements Observer {
                 ennemiViews.put((Ennemi) ent, img);
             }
         }
+        //creation des attaques, il faut appeler l'attaqueur
+        AttackPattern atqJoueur = new AttackPattern(25, 2, 10, 25, "trait", 50);
+        atqJoueur.setRGB(0.5,0.5,1);
+        joueur.setAttaque(atqJoueur);
     }
 
     @Override
@@ -154,5 +83,6 @@ public class ViewManager implements Observer {
             entry.getValue().setX(entry.getKey().getX());
             entry.getValue().setY(entry.getKey().getY());
         }
+
     }
 }

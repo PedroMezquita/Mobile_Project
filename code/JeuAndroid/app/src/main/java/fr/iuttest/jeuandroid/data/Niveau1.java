@@ -15,19 +15,19 @@ public class Niveau1 extends Niveau{
     public Map load() {
         Map map = new Map();
         //changer les id
-        Props obstacle1 = new Props(1000,50,0,0,"Mur haut");
+        Props obstacle1 = new Props(100,500,600,700,"Mur haut");
         obstacle1.setRGB(0,0,0);
         obstacle1.setSprite(R.drawable.template_wall);
         map.addEntity(obstacle1);
-        Props obstacle2 = new Props(50,1000,490,0,"Mur droite");
+        Props obstacle2 = new Props(500,100,490,110,"Mur droite");
         obstacle2.setRGB(0,0,0);
         obstacle2.setSprite(R.drawable.template_wall);
         map.addEntity(obstacle2);
-        Props obstacle3 = new Props(1000,500,0,490,"Mur bas");
+        Props obstacle3 = new Props(100,500,660,490,"Mur bas");
         obstacle3.setRGB(0,0,0);
         obstacle3.setSprite(R.drawable.template_wall);
         map.addEntity(obstacle3);
-        Props obstacle4 = new Props(50,1000,0,0,"Mur gache");
+        Props obstacle4 = new Props(500,100,90,100,"Mur gache");
         obstacle4.setRGB(0,0,0);
         obstacle4.setSprite(R.drawable.template_wall);
         map.addEntity(obstacle4);

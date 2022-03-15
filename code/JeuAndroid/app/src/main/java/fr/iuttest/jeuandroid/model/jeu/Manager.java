@@ -76,14 +76,13 @@ public class Manager {
         lvl.getLast().setNiveauSuivant(new Niveau3());
         lvl.getLast().setNiveauSuivant(new Niveau4());
         lvl.getLast().setNiveauSuivant(new Niveau5());
-
         map = lvl.load();
 
         monViewManager = new ViewManager(joueur, joueurView, map, parentActivity, layou_jeu);
 
         IAPathfind ia = new IAPathfind(joueur, map.getEnnemis());
-
         initLoop();
+
 
         beep.attacher(monViewManager);
         beepEnnemi.attacher(ia);
@@ -93,7 +92,10 @@ public class Manager {
     public void initLoop (){
 // Pour l'instant faut le laisser comme ça parce qu'on a l'autre truc degueulasse
         beep = new Loop(50);
+        beep.start();
+
         beepEnnemi = new Loop(200);
+        beepEnnemi.start();
 
         //beep.attacher(new MainObserver(this));
 

@@ -31,7 +31,6 @@ public class Loop extends Thread{
 
     public Loop(int timer){
         this.timer = timer;
-        run();
     }
 
     //ajoute un observeur à la liste
