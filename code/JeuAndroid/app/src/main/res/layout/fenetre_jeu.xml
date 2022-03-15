@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/jeu"
@@ -12,9 +12,9 @@
         android:id="@+id/imageView"
         android:layout_width="82dp"
         android:layout_height="95dp"
-        app:srcCompat="@drawable/template_character"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageViewEnemmi"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
 
@@ -29,4 +29,4 @@
         tools:layout_editor_absoluteX="116dp" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

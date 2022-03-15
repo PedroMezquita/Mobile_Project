@@ -1,9 +1,11 @@
 package fr.iuttest.jeuandroid.model.jeu.entities;
 
+import java.io.Serializable;
+
 import fr.iuttest.jeuandroid.model.jeu.attack.AttackPattern;
 
 //classe métier Personnage
-public abstract class Personnage extends Entite {
+public abstract class Personnage extends Entite implements Serializable {
     //multiplie les dégats des attaques
     private int atkPnt;
     //points de vie maximums

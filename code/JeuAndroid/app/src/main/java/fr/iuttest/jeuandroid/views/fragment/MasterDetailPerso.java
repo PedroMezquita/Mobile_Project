@@ -8,7 +8,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import fr.iuttest.jeuandroid.R;
-import fr.iuttest.jeuandroid.model.jeu.Manager;
 import fr.iuttest.jeuandroid.model.jeu.entities.Joueur;
 import fr.iuttest.jeuandroid.model.jeu.entities.Personnage;
 import fr.iuttest.jeuandroid.model.test.Personnages;
@@ -56,8 +55,8 @@ public class MasterDetailPerso extends AppCompatActivity {
 
     public void clickJeu(View view) {
         Intent intent = new Intent(this, FenetreJeu.class);
+        intent.putExtra("persoEnCours", persoEnCours);
         startActivity(intent);
-        Manager monManager = new Manager(this, persoEnCours);
     }
 
     public void clickRetourMenu(View view){finish();}

@@ -1,10 +1,6 @@
 package fr.iuttest.jeuandroid.model.jeu;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.VibrationAttributes;
-
-import androidx.appcompat.app.AppCompatActivity;
+import android.widget.ImageView;
 
 import fr.iuttest.jeuandroid.data.Niveau;
 import fr.iuttest.jeuandroid.data.Niveau1;
@@ -18,12 +14,10 @@ import fr.iuttest.jeuandroid.model.jeu.attack.BasiqueAttacker;
 import fr.iuttest.jeuandroid.model.jeu.collisions.CollisioneurCarre;
 import fr.iuttest.jeuandroid.model.jeu.deplacement.DeplacerBasique;
 import fr.iuttest.jeuandroid.model.jeu.deplacement.Deplaceur;
-import fr.iuttest.jeuandroid.model.jeu.entities.Ennemi;
 import fr.iuttest.jeuandroid.model.jeu.entities.Joueur;
 import fr.iuttest.jeuandroid.model.jeu.entities.Personnage;
+import fr.iuttest.jeuandroid.model.jeu.entities.Position;
 import fr.iuttest.jeuandroid.model.jeu.maps.Map;
-import fr.iuttest.jeuandroid.views.FenetreJeu;
-import fr.iuttest.jeuandroid.views.ViewManager;
 
 /*
 //import data.*;
@@ -42,7 +36,7 @@ import fr.iuttest.jeuandroid.views.ViewManager;
 //import java.lang.reflect.Method;
 //import java.util.*;
 //
-public class Manager implements Observer{
+public class Manager {
 
     //liste des touches appuyées
 //    private HashSet<KeyCode> listeTouches = new HashSet<KeyCode>();
@@ -54,51 +48,35 @@ public class Manager implements Observer{
     private Map map;
     //joueur actuel
     private Joueur joueur;
-    //ennemie
-    private Ennemi ennemie;
+    //ImageView du joueur actu
+    private ImageView joueurView;
     //boucle du joueur
     private Loop beep;
     //boucle des ennemis
     private Loop beepEnnemi;
     //numéro du niveau
     private Niveau lvl;
-    // gère la vue
-    private ViewManager monViewManager;
-
-    private Activity activityParente;
 
     public Manager (){
         init();
     }
 
-    public Manager (AppCompatActivity activity, Joueur perso){
-        activityParente = activity;
-        joueur = perso;
-        init();
-    }
-
     //charge le premier niveau et les controles
     public void init (){
+
         lvl = new Niveau1();
         lvl.getLast().setNiveauSuivant(new Niveau2());
         lvl.getLast().setNiveauSuivant(new Niveau3());
         lvl.getLast().setNiveauSuivant(new Niveau4());
         lvl.getLast().setNiveauSuivant(new Niveau5());
-        map = lvl.load();
-        ennemie = new Ennemi(50,100,100,2,10,10,50,50,"méchant",10,10,10);
-        monViewManager = new ViewManager(joueur, ennemie, activityParente);
-        joueur.addObserver(monViewManager);
 
-        /*
-        addKeyEvent(KeyCode.RIGHT,  "deplacerDroite");
-        addKeyEvent(KeyCode.LEFT, "deplacerGauche");
-        addKeyEvent(KeyCode.UP, "deplacerHaut");
-        addKeyEvent(KeyCode.DOWN, "deplacerBas");
-        addKeyEvent(KeyCode.Z, "attaqueHaut");
-        addKeyEvent(KeyCode.S, "attaqueBas");
-        addKeyEvent(KeyCode.Q, "attaqueGauche");
-        addKeyEvent(KeyCode.D, "attaqueDroite");
-*/
+        map = new Map();
+        map = lvl.load();
+
+        //map.setWidth(500);
+        //map.setHeight(500);
+        joueur = map.getJoueur();
+
         initLoop();
     }
 
@@ -109,51 +87,18 @@ public class Manager implements Observer{
         beepEnnemi = new Loop(200);
 
         beep.attacher(new MainObserver(this));
-
-        beepEnnemi.attacher(new EnnemiObserver(this));
-        beep.start();
-        beepEnnemi.start();
-        */
+*/
+        //beepEnnemi.attacher(new EnnemiObserver(this));
+        //beep.start();
+        //beepEnnemi.start();
     }
 
     public Map getMap() {
         return map;
     }
-/*
-    public void addTouche (KeyCode s){
-        listeTouches.add(s);
-    }
 
-    public void removeTouche (KeyCode s){
-        listeTouches.remove(s);
-    }
 
-    public HashSet<KeyCode> getListeTouches() {
-        return listeTouches;
-    }
 
-    public void resetListeTouches(){
-        listeTouches = new HashSet<KeyCode>();
-    }
-
-    public void addKeyEvent (KeyCode touche, String method){
-        keyEvents.put(touche, method);
-        reversedKeyEvents.put(method,touche);
-    }
-
-    //lit la liste des touches appuyées et en effectue les actions
-    public void readKeys (){
-        for (Iterator<KeyCode> it = listeTouches.iterator(); it.hasNext(); ) {
-            KeyCode touche = it.next();
-            try {
-                Method method = this.getClass().getMethod(keyEvents.get(touche));
-                method.invoke(this);
-            }
-            catch (Exception e){
-            }
-        }
-    }
-*/
 
     //appel le déplaceur pour déplacer le joueur à droite
     public void deplacerDroite () {
@@ -192,44 +137,6 @@ public class Manager implements Observer{
         }
     }
 
-/*
-
-    //de meme en bas
-     public void attaqueBas () {
-        if (listeTouches.contains(reversedKeyEvents.get("attaqueHaut"))){
-            return;
-        }
-        BasiqueAttacker attacker = new BasiqueAttacker();
-        Attack attaque = attacker.attack(joueur, new Direction(0, 1));
-         if (attaque != null) {
-             map.addAttack(attaque);
-         }
-    }
-
-    //de meme à gauche
-      public void attaqueGauche () {
-          if (listeTouches.contains(reversedKeyEvents.get("attaqueHaut")) || listeTouches.contains(reversedKeyEvents.get("attaqueBas"))){
-              return;
-          }
-        BasiqueAttacker attacker = new BasiqueAttacker();
-        Attack attaque = attacker.attack(joueur, new Direction(-1, 0));
-          if (attaque != null) {
-              map.addAttack(attaque);
-          }
-    }
-
-    //de meme à droite
-     public void attaqueDroite () {
-         if (listeTouches.contains(reversedKeyEvents.get("attaqueHaut")) || listeTouches.contains(reversedKeyEvents.get("attaqueGauche")) || listeTouches.contains(reversedKeyEvents.get("attaqueBas"))){
-             return;
-         }
-        BasiqueAttacker attacker = new BasiqueAttacker();
-        Attack attaque = attacker.attack(joueur, new Direction(1, 0));
-         if (attaque != null) {
-             map.addAttack(attaque);
-         }
-    }
-    */
 
     //appel le pathfincding et un déplaceur pour déplacer l'ennemi
     public void updateEnemi(){
@@ -254,10 +161,12 @@ public class Manager implements Observer{
     public Joueur getJoueur() {
         return joueur;
     }
-
     public void setJoueur(Joueur joueur) {
         this.joueur = joueur;
     }
+
+    public ImageView getJoueurView() { return joueurView; }
+    public void setJoueurView(ImageView joueurView) { this.joueurView = joueurView; }
 
     public Loop getBeep() {
         return beep;
@@ -287,8 +196,11 @@ public class Manager implements Observer{
         beepEnnemi.interrupt();
     }
 
-    @Override
-    public void update() {
 
+    public ImageView updatePositionImages(ImageView pers){
+        Position pos = joueur.getPos();
+        pers.setX(pos.getxPos());
+        pers.setY(pos.getyPos());
+        return pers;
     }
 }
