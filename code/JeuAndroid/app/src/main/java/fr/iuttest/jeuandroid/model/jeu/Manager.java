@@ -1,5 +1,7 @@
 package fr.iuttest.jeuandroid.model.jeu;
 
+import android.app.Activity;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import fr.iuttest.jeuandroid.data.Niveau;
@@ -18,6 +20,7 @@ import fr.iuttest.jeuandroid.model.jeu.entities.Joueur;
 import fr.iuttest.jeuandroid.model.jeu.entities.Personnage;
 import fr.iuttest.jeuandroid.model.jeu.entities.Position;
 import fr.iuttest.jeuandroid.model.jeu.maps.Map;
+import fr.iuttest.jeuandroid.views.ViewManager;
 
 /*
 //import data.*;
@@ -56,13 +59,17 @@ public class Manager {
     private Loop beepEnnemi;
     //numéro du niveau
     private Niveau lvl;
+    // view manager qui permet de manager la vue
+    private ViewManager monViewManager;
 
-    public Manager (){
-        init();
+    public Manager (Joueur joueur, ImageView joueurView, Activity parentActivity, FrameLayout layou_jeu){
+        this.joueur = joueur;
+        this.joueurView = joueurView;
+        init(parentActivity,layou_jeu);
     }
 
     //charge le premier niveau et les controles
-    public void init (){
+    public void init (Activity parentActivity, FrameLayout layou_jeu){
 
         lvl = new Niveau1();
         lvl.getLast().setNiveauSuivant(new Niveau2());
@@ -70,24 +77,26 @@ public class Manager {
         lvl.getLast().setNiveauSuivant(new Niveau4());
         lvl.getLast().setNiveauSuivant(new Niveau5());
 
-        map = new Map();
         map = lvl.load();
 
-        //map.setWidth(500);
-        //map.setHeight(500);
-        joueur = map.getJoueur();
+        monViewManager = new ViewManager(joueur, joueurView, map, parentActivity, layou_jeu);
+
+        IAPathfind ia = new IAPathfind(joueur, map.getEnnemis());
 
         initLoop();
+
+        beep.attacher(monViewManager);
+        beepEnnemi.attacher(ia);
     }
 
     //instancie la boucle de jeu
     public void initLoop (){
-/* Pour l'instant faut le laisser comme ça parce qu'on a l'autre truc degueulasse
+// Pour l'instant faut le laisser comme ça parce qu'on a l'autre truc degueulasse
         beep = new Loop(50);
         beepEnnemi = new Loop(200);
 
-        beep.attacher(new MainObserver(this));
-*/
+        //beep.attacher(new MainObserver(this));
+
         //beepEnnemi.attacher(new EnnemiObserver(this));
         //beep.start();
         //beepEnnemi.start();
@@ -138,18 +147,17 @@ public class Manager {
     }
 
 
-    //appel le pathfincding et un déplaceur pour déplacer l'ennemi
-    public void updateEnemi(){
-        IA enemiIA = new IAPathfind();
-        Deplaceur deplace = new DeplacerBasique(new CollisioneurCarre(map));
-        for (Personnage ennemi : map.getEnnemis()){
-            ennemi.getAttaque().setCurrentcooldown(ennemi.getAttaque().getCurrentcooldown()-1);
-            Direction dir = enemiIA.approcheJoueur(joueur, ennemi, map);
-            deplace.deplacer(ennemi, new Direction(dir.getxDir(),0));
-            deplace.deplacer(ennemi, new Direction(0,dir.getyDir()));
-        }
-
-    }
+//    //appel le pathfincding et un déplaceur pour déplacer l'ennemi
+//    public void updateEnemi(){
+//        IA enemiIA = new IAPathfind();
+//        Deplaceur deplace = new DeplacerBasique(new CollisioneurCarre(map));
+//        for (Personnage ennemi : map.getEnnemis()){
+//            ennemi.getAttaque().setCurrentcooldown(ennemi.getAttaque().getCurrentcooldown()-1);
+//            Direction dir = enemiIA.approcheJoueur(joueur, ennemi, map);
+//            deplace.deplacer(ennemi, new Direction(dir.getxDir(),0));
+//            deplace.deplacer(ennemi, new Direction(0,dir.getyDir()));
+//        }
+//    }
 
     //appel un déplaceur d'attaque pour déplacer les attaques
     public void updateAttaque(){

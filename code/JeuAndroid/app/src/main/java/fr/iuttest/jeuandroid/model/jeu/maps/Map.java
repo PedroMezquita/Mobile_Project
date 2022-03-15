@@ -26,6 +26,8 @@ public class Map {
     private ArrayList<Attack> allAttacks = new ArrayList<Attack>();
     //liste des ennemis sur la carte
     private ArrayList<Ennemi> allEnemi = new ArrayList<Ennemi>();
+    //liste des sprite des ennemis
+    private ArrayList<Integer> allSpriteEnnemi = new ArrayList<Integer>();
     //nombre d'entite sur la carte
     private int nbEntite; //integer property a la base
     //nombre d'enemis
@@ -157,5 +159,13 @@ public class Map {
         allAttacks.removeAll(allAttacks);
         allEntities.removeAll(allEntities);
         setNbEntite(0);
+    }
+
+    public ArrayList<Integer> getAllSpriteEnnemi() {
+        return allSpriteEnnemi;
+    }
+
+    public void setAllSpriteEnnemi(ArrayList<Integer> allSpriteEnnemi) {
+        this.allSpriteEnnemi = allSpriteEnnemi;
     }
 }

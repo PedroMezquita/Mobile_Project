@@ -29,10 +29,13 @@ public class Loop extends Thread{
         this.perso = perso;
     }
 
-    //ajoute un observeur à la liste
-    public void attacher (Observer obs){
-        listeObs.add(obs);
+    public Loop(int timer){
+        this.timer = timer;
+        run();
     }
+
+    //ajoute un observeur à la liste
+    public void attacher (Observer obs){ listeObs.add(obs); }
 
     //retire un observeur de la liste
     public void detacher (Observer obs){
@@ -56,22 +59,9 @@ public class Loop extends Thread{
 
     //notifie tout les observeurs
     public void beep() {
-/* Code original
         for (Observer obs: listeObs) {
             obs.update();
         }
-
- */
-        IA enemiIA = new IAPathfind();
-//        Deplaceur deplace = new DeplacerBasique(new CollisioneurCarre(map));
-//C'est degueulasse mais ça devrais marcher, a changer rapidement-------------------------------------------------------------------------------------------------
-        if (enemi.getX() > perso.getX())
-            enemi.setX(enemi.getX() - 2);
-        else { enemi.setX(enemi.getX() + 2);}
-
-        if (enemi.getY() > perso.getY())
-            enemi.setY(enemi.getY() - 2);
-        else { enemi.setY(enemi.getY() + 2);}
     }
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------
 

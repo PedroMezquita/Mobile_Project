@@ -46,5 +46,4 @@ public class Niveau1 extends Niveau{
         map.setImage(R.drawable.template_background);
         return map;
     }
-
 }

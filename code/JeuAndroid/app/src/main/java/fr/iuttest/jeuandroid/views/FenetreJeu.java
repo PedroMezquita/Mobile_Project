@@ -41,18 +41,25 @@ public class FenetreJeu extends AppCompatActivity {
         setContentView(R.layout.fenetre_jeu);
 
         this.activiteParente = getParent();
-        manager = new Manager();
         layout_jeu = (FrameLayout) findViewById(R.id.jeu);
         initialiserJoueur();
-        manager.setJoueur(perso);
+        manager = new Manager(perso, persoView, this, layout_jeu);
     }
 
+    private void initialiserJoueur(){
+        perso = (Joueur) getIntent().getSerializableExtra("persoEnCours");
+        persoView = new ImageView(this);
+        persoView = (ImageView) findViewById(R.id.imageView);
+        persoView.setImageResource(perso.getSprite());
+        persoView.setMaxWidth(82);
+        persoView.setMaxHeight(95);
+        persoView.setX(500);
+        persoView.setY(100);
+    }
 
     @Override
     protected void onStart() {
         super.onStart();
-        chargementMap(manager.getMap());
-        enemiView = (ImageView) findViewById(R.id.imageViewEnemmi);
         initLoop();
 
         //SUPER IDEE DU PROF: Faire un observeur pour notifier l'Image View lors qu'on change l'objet
@@ -136,30 +143,6 @@ public class FenetreJeu extends AppCompatActivity {
           beepEnnemi.start();
 //
         }
-
-    public void chargementMap(Map map){
-        for (Entite ent: map.getAllEntities()) {
-            ImageView img = new ImageView(this);
-            //Ajouter id au constructeur de la map donc chaque objet peut avoir un id de type R.string...
-            img.setImageResource(ent.getSprite());
-            img.setY(ent.getPos().getxPos());
-            img.setX(ent.getPos().getyPos());
-            FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(ent.getxSize(), ent.getySize());
-            layout_jeu.addView(img, lp);
-        }
-
-    }
-
-    private void initialiserJoueur(){
-        perso = (Joueur) getIntent().getSerializableExtra("persoEnCours");
-        persoView = new ImageView(this);
-        persoView = (ImageView) findViewById(R.id.imageView);
-        persoView.setImageResource(perso.getSprite());
-        persoView.setMaxWidth(82);
-        persoView.setMaxHeight(95);
-        persoView.setX(500);
-        persoView.setY(100);
-    }
 
         /*
     public void updateAttaque(){

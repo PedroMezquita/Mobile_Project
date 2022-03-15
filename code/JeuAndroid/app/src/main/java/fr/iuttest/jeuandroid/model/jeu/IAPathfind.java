@@ -1,8 +1,12 @@
 package fr.iuttest.jeuandroid.model.jeu;
 
+import java.util.ArrayList;
+
 import fr.iuttest.jeuandroid.model.jeu.attack.Attack;
 import fr.iuttest.jeuandroid.model.jeu.attack.BasiqueAttacker;
 import fr.iuttest.jeuandroid.model.jeu.collisions.CollisioneurVisionEnnemi;
+import fr.iuttest.jeuandroid.model.jeu.entities.Ennemi;
+import fr.iuttest.jeuandroid.model.jeu.entities.Joueur;
 import fr.iuttest.jeuandroid.model.jeu.entities.Personnage;
 import fr.iuttest.jeuandroid.model.jeu.maps.Map;
 
@@ -14,7 +18,11 @@ import model.collisions.CollisioneurVisionEnnemi;
 import model.entities.Personnage;
 import model.maps.Map;
 */
-public class IAPathfind implements IA{
+public class IAPathfind implements IA, Observer{
+    private Joueur joueur;
+    private Ennemi ennemi;
+    private ArrayList<Ennemi> ennemis;
+
     @Override
     public Direction approcheJoueur(Personnage joueur, Personnage enemi, Map map) {
         Direction path = new Direction(0,0);
@@ -40,10 +48,29 @@ public class IAPathfind implements IA{
             if (atk != null)
                 map.addAttack(atk);
         }
-
-
         return path;
     }
 
+    public IAPathfind(Joueur joueur, ArrayList<Ennemi> ennemis){
+        this.joueur = joueur;
+        this.ennemis = ennemis;
+    }
+
+    public void raprocherJoueur(){
+        for (Ennemi ennemi:ennemis) {
+            if (ennemi.getX() > joueur.getX())
+                ennemi.setX(ennemi.getX() - 2);
+            else { ennemi.setX(ennemi.getX() + 2);}
+
+            if (ennemi.getY() > joueur.getY())
+                ennemi.setY(ennemi.getY() - 2);
+            else { ennemi.setY(ennemi.getY() + 2);}
+        }
+    }
+
+    @Override
+    public void update() {
+        raprocherJoueur();
+    }
 }
 

@@ -35,7 +35,7 @@
         <entry key="../../../../../../../etud/pemezquita/Documents/Android/dev-mobile/code/JeuAndroid/app/src/main/res/layout/perso_select_recycler_view.xml" value="0.1" />
         <entry key="../../../../../../../etud/pemezquita/Documents/Android/dev-mobile/code/JeuAndroid/app/src/main/res/layout/test_recycler_view.xml" value="0.24818840579710144" />
         <entry key="../../../../../../../etud/pemezquita/Documents/Android/dev-mobile/code/JeuAndroid/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.35625" />
-        <entry key="app/src/main/res/layout-land/list_personnages.xml" value="0.16710758377425045" />
+        <entry key="app/src/main/res/layout-land/list_personnages.xml" value="0.25" />
         <entry key="app/src/main/res/layout/cellule_recycler_view.xml" value="0.12" />
         <entry key="app/src/main/res/layout/fragment_details.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_master.xml" value="0.19739583333333333" />
