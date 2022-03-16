@@ -9,13 +9,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import fr.iuttest.jeuandroid.R;
 import fr.iuttest.jeuandroid.model.jeu.entities.Joueur;
-import fr.iuttest.jeuandroid.model.jeu.entities.Personnage;
 import fr.iuttest.jeuandroid.model.test.Personnages;
 import fr.iuttest.jeuandroid.model.test.Stub;
-import fr.iuttest.jeuandroid.views.FenetreJeu;
-import fr.iuttest.jeuandroid.views.FenetrePrincipal;
-import fr.iuttest.jeuandroid.views.fragment.FenetreInfoPerso;
-import fr.iuttest.jeuandroid.views.fragment.FragmentMaster;
+import fr.iuttest.jeuandroid.views.GameActivity;
 
 public class MasterDetailPerso extends AppCompatActivity {
 
@@ -54,7 +50,7 @@ public class MasterDetailPerso extends AppCompatActivity {
     }
 
     public void clickJeu(View view) {
-        Intent intent = new Intent(this, FenetreJeu.class);
+        Intent intent = new Intent(this, GameActivity.class);
         intent.putExtra("persoEnCours", persoEnCours);
         startActivity(intent);
     }

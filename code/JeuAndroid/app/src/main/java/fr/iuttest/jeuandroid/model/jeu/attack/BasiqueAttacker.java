@@ -1,16 +1,18 @@
 package fr.iuttest.jeuandroid.model.jeu.attack;
 
 
+import android.media.MediaPlayer;
+
+import fr.iuttest.jeuandroid.R;
 import fr.iuttest.jeuandroid.model.jeu.Direction;
 import fr.iuttest.jeuandroid.model.jeu.entities.Personnage;
 
 public class BasiqueAttacker implements Attacker{
-
     @Override
     public Attack attack(Personnage pers, Direction dir) {
-        if (pers.getAttaque().getCurrentcooldown() > 0){
-            return null;
-        }
+//        if (pers.getAttaque().getCurrentcooldown() > 0){
+//            return null;
+//        }
         pers.getAttaque().resetCooldown();
         if (dir.getyDir() == 1){
             int atqXPos = pers.getPos().getxPos()+(pers.getxSize()/2)-(pers.getAttaque().getxSize()/2);

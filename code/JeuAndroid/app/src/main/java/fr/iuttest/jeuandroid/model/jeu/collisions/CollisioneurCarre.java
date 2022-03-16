@@ -1,6 +1,8 @@
 package fr.iuttest.jeuandroid.model.jeu.collisions;
 
 
+import java.util.ArrayList;
+
 import fr.iuttest.jeuandroid.model.jeu.Direction;
 import fr.iuttest.jeuandroid.model.jeu.entities.Entite;
 import fr.iuttest.jeuandroid.model.jeu.entities.Personnage;
@@ -27,7 +29,8 @@ public class CollisioneurCarre implements CollisioneurMouvement {
 //        if (persMinY < 0 || persMaxY > map.getHeight()  || persMinX < 0  || persMaxX > map.getWidth() ){
 //            return false;
 //        }
-        for (Entite entity : this.map.getAllEntities()) {
+
+        for (Entite entity : (ArrayList<Entite>) this.map.getAllEntities().clone()) {
             //on calcule sa "hitbox"
             if (!map.getAllAttacks().contains(entity)) {
                 int minY = entity.getPos().getyPos(), maxY = entity.getPos().getyPos() + entity.getySize(), minX = entity.getPos().getxPos(), maxX = entity.getPos().getxPos() + entity.getxSize();

@@ -3,10 +3,10 @@ package fr.iuttest.jeuandroid.model.jeu;
 
 public class EnnemiObserver implements Observer{
 
-    Manager manager;
+    GameManager gameManager;
 
-    public EnnemiObserver (Manager manager){
-        this.manager = manager;
+    public EnnemiObserver (GameManager gameManager){
+        this.gameManager = gameManager;
     }
 
     //met a jour les ennemis à chaque tour de boucle

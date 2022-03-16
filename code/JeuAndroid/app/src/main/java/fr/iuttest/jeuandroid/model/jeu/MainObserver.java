@@ -2,10 +2,10 @@ package fr.iuttest.jeuandroid.model.jeu;
 
 public class MainObserver implements Observer{
 
-    Manager manager;
+    GameManager gameManager;
 
-    public MainObserver (Manager manager){
-        this.manager = manager;
+    public MainObserver (GameManager gameManager){
+        this.gameManager = gameManager;
     }
 
     //demande au manager de lire les touches appuyées
@@ -14,7 +14,7 @@ public class MainObserver implements Observer{
 //        Platform.runLater(()->{
 //            System.out.println(manager.getListeTouches());
 //            manager.readKeys();
-            manager.updateAttaque();
+            gameManager.updateAttaque();
 //        });
     }
 }

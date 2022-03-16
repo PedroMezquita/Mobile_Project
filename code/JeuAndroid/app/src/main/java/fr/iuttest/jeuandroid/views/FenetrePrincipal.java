@@ -8,7 +8,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import fr.iuttest.jeuandroid.R;
-import fr.iuttest.jeuandroid.model.jeu.Manager;
 import fr.iuttest.jeuandroid.views.fragment.MasterDetailPerso;
 
 public class FenetrePrincipal extends AppCompatActivity {
