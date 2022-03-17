@@ -23,24 +23,7 @@ import fr.iuttest.jeuandroid.model.jeu.entities.Position;
 import fr.iuttest.jeuandroid.model.jeu.maps.Map;
 import fr.iuttest.jeuandroid.views.ViewManager;
 
-/*
-//import data.*;
-//import javafx.scene.input.KeyCode;
-//import model.IA.IA;
-//import model.IA.IAPathfind;
-//import model.attack.AtkUpdater;
-//import model.attack.Attack;
-//import model.attack.BasiqueAttacker;
-//import model.collisions.CollisioneurCarre;
-//import model.deplacement.DeplacerBasique;
-//import model.deplacement.Deplaceur;
-//import model.entities.*;
-//import model.maps.Map;
-*/
-//import java.lang.reflect.Method;
-//import java.util.*;
-//
-public class GameManager {
+public class GameManager implements Observer{
 
     //liste des touches appuyées
 //    private HashSet<KeyCode> listeTouches = new HashSet<KeyCode>();
@@ -68,6 +51,9 @@ public class GameManager {
 
     private Context context;
 
+    private DeplacerBasique deplacerBasique;
+    private CollisioneurCarre collisioneurCarre;
+
     public GameManager(Context applicationContext, Joueur joueur, ImageView joueurView, Activity parentActivity, FrameLayout layou_jeu){
         this.joueur = joueur;
         this.joueurView = joueurView;
@@ -87,12 +73,10 @@ public class GameManager {
 
         monViewManager = new ViewManager(joueur, joueurView, map, parentActivity, layou_jeu, context);
 
-        IAPathfind ia = new IAPathfind(joueur, map.getEnnemis());
+        collisioneurCarre = new CollisioneurCarre(map);
+        deplacerBasique = new DeplacerBasique(collisioneurCarre);
+
         initLoop();
-
-
-        beep.attacher(monViewManager);
-        beepEnnemi.attacher(ia);
     }
 
     //instancie la boucle de jeu
@@ -104,11 +88,10 @@ public class GameManager {
         beepEnnemi = new Loop(200);
         beepEnnemi.start();
 
-        //beep.attacher(new MainObserver(this));
+        IAPathfind ia = new IAPathfind(joueur, map.getEnnemis());
 
-        //beepEnnemi.attacher(new EnnemiObserver(this));
-        //beep.start();
-        //beepEnnemi.start();
+        beep.attacher(monViewManager);
+        beepEnnemi.attacher(ia);
     }
 
     public Map getMap() {
@@ -121,29 +104,25 @@ public class GameManager {
     //appel le déplaceur pour déplacer le joueur à droite
     public void deplacerDroite () {
         Direction dir = new Direction(1,0);
-        DeplacerBasique deplaceur = new DeplacerBasique(new CollisioneurCarre(map));
-        deplaceur.deplacer((Personnage)joueur, dir);
+        deplacerBasique.deplacer((Personnage)joueur, dir);
     }
 
     //de meme à gauche
     public void deplacerGauche () {
         Direction dir = new Direction(-1,0);
-        DeplacerBasique deplaceur = new DeplacerBasique(new CollisioneurCarre(map));
-        deplaceur.deplacer((Personnage)joueur, dir);
+        deplacerBasique.deplacer((Personnage)joueur, dir);
     }
 
     //de même en haut
     public void deplacerHaut () {
         Direction dir = new Direction(0,-1); //Pour une raison que je ne comprends si je met 1 ça decends au lieu de monter
-        DeplacerBasique deplaceur = new DeplacerBasique(new CollisioneurCarre(map));
-        deplaceur.deplacer((Personnage)joueur, dir);
+        deplacerBasique.deplacer((Personnage)joueur, dir);
     }
 
     //de même en bas
     public void deplacerBas () {
         Direction dir = new Direction(0,1); //Pour une raison que je ne comprends si je met -1 ça monte au lieu de decendre
-        DeplacerBasique deplaceur = new DeplacerBasique(new CollisioneurCarre(map));
-        deplaceur.deplacer((Personnage)joueur, dir);
+        deplacerBasique.deplacer((Personnage)joueur, dir);
     }
 
     //appel l'attacker pour instancier une attaque
@@ -219,5 +198,15 @@ public class GameManager {
         pers.setX(pos.getxPos());
         pers.setY(pos.getyPos());
         return pers;
+    }
+
+    public void interrupt() {
+        beep.interrupt();
+        beepEnnemi.interrupt();
+    }
+
+    @Override
+    public void update() {
+        updateAttaque();
     }
 }

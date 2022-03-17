@@ -25,7 +25,7 @@ public abstract class Entite implements Serializable {
     public Entite(int xSize, int ySize, int xpos, int ypos, String id){
         this.xSize = xSize;
         this.ySize = ySize;
-        this.position = new Position(xpos, ypos);
+        position = new Position(xpos, ypos);
         this.id = id;;
     }
 

@@ -21,14 +21,10 @@ public class GameActivity extends AppCompatActivity {
     private GameManager gameManager;
     private FrameLayout layout_jeu;
     private ImageView persoView;
-    private ImageView enemiView;
     private Joueur perso;
-    private Loop beep;
-    private Loop beepEnnemi;
     private Activity activiteParente;
     private float initialPositionx;
     private float initialPositiony;
-    private DeplacerBasique deplaceur;
     private int firstTouch = 0;
 
 
@@ -60,8 +56,6 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-//        initLoop();
-
         //SUPER IDEE DU PROF: Faire un observeur pour notifier l'Image View lors qu'on change l'objet
 
         layout_jeu.setOnTouchListener((view, motionEvent) -> {
@@ -112,43 +106,17 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        beep.interrupt();
-        beepEnnemi.interrupt();
+        gameManager.interrupt();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        beep.interrupt();
-        beepEnnemi.interrupt();
     }
 
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        beep.interrupt();
-        beepEnnemi.interrupt();
     }
-
-/*
-    public void initLoop(){
-          beep = new Loop(50, enemiView, persoView);
-          beepEnnemi = new Loop(200, enemiView, persoView);
-
-//        beep.attacher(new MainObserver(this));
-//
-//        beepEnnemi.attacher(new EnnemiObserver(this));
-          beep.start();
-          beepEnnemi.start();
-//
-        }
-*/
-        /*
-    public void updateAttaque(){
-        joueur.getAttaque().setCurrentcooldown(joueur.getAttaque().getCurrentcooldown()-1);
-        AtkUpdater updater = new AtkUpdater();
-        updater.updateAttack(map);
-    }
-*/
 }
