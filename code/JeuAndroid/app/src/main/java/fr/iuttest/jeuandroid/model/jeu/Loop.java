@@ -67,4 +67,7 @@ public class Loop extends Thread{
     public ArrayList<Observer> getListeObs() {
         return (ArrayList<Observer>) listeObs.clone();
     }
+    public void repprendre(){
+        run();
+    }
 }

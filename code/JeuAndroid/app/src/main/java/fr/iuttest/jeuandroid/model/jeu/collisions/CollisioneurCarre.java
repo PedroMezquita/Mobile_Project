@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import fr.iuttest.jeuandroid.model.jeu.Direction;
 import fr.iuttest.jeuandroid.model.jeu.entities.Entite;
 import fr.iuttest.jeuandroid.model.jeu.entities.Personnage;
+import fr.iuttest.jeuandroid.model.jeu.entities.Props;
 import fr.iuttest.jeuandroid.model.jeu.maps.Map;
 
 public class CollisioneurCarre implements CollisioneurMouvement {
@@ -22,7 +23,10 @@ public class CollisioneurCarre implements CollisioneurMouvement {
     @Override
     public boolean testCollision(Personnage pers, Direction dir) {
         //calcul de la hitbox du personnage
-        int persMinY = pers.getPos().getyPos()+(dir.getyDir()*pers.getSpeed()), persMaxY = pers.getPos().getyPos()+pers.getySize()+(dir.getyDir()*pers.getSpeed()), persMinX = pers.getPos().getxPos()+(dir.getxDir()*pers.getSpeed()), persMaxX = pers.getPos().getxPos()+pers.getxSize()+(dir.getxDir()*pers.getSpeed());
+        int persMinY = pers.getPos().getyPos()+(dir.getyDir()*pers.getSpeed());
+        int persMaxY = pers.getPos().getyPos() + pers.getySize() + (dir.getyDir() * pers.getSpeed());
+        int persMinX = pers.getPos().getxPos() + (dir.getxDir() * pers.getSpeed());
+        int persMaxX = pers.getPos().getxPos() + pers.getxSize() + (dir.getxDir() * pers.getSpeed());
         //pour chaque entite de la map
 
         //Faudra qu'on trouve comment trouver la taille de l'ecran
@@ -30,20 +34,39 @@ public class CollisioneurCarre implements CollisioneurMouvement {
 //            return false;
 //        }
 
-        for (Entite entity : (ArrayList<Entite>) this.map.getAllEntities().clone()) {
-            //on calcule sa "hitbox"
-            if (!map.getAllAttacks().contains(entity)) {
-                int minY = entity.getPos().getyPos(), maxY = entity.getPos().getyPos() + entity.getySize(), minX = entity.getPos().getxPos(), maxX = entity.getPos().getxPos() + entity.getxSize();
-                //si ((le y minimum/maximum du joueur est compris entre les y du props)ou(le y du personnage englobe les y du ennemi))et id du perso != id du props
-                if (((persMinY >= minY && persMinY <= maxY) || (persMaxY >= minY && persMaxY <= maxY) || (persMaxY >= maxY && persMinY <= minY)) && entity.getId() != pers.getId()) {
-                    //la même avec le X
-                    if (((persMinX >= minX && persMinX <= maxX) || (persMaxX >= minX && persMaxX <= maxX) || (persMaxX >= maxX && persMinX <= minX)) && entity.getId() != pers.getId()) {
-                        return false;
-                    }
-                }
+        for (Props props : this.map.getAllBlocs()) {
+            int entityMinY = props.getPos().getyPos();
+            int entityMaxY = props.getPos().getyPos() + props.getySize();
+            int entityMinX = props.getPos().getxPos();
+            int entityMaxX = props.getPos().getxPos() + props.getxSize();
+            if ((persMaxX > entityMinX && persMaxX < entityMaxX) && (persMinY > entityMinY && persMinY < entityMaxY)) {
+                return false;
+            } else if ((persMinX < entityMaxX && persMinX > entityMinX) && (persMaxY > entityMinY && persMinY < entityMaxY)) {
+                return false;
             }
         }
         return true;
+
+
+//        for (Entite entity : (ArrayList<Entite>) this.map.getAllEntities().clone()) {
+//            int entityMinY = pers.getPos().getyPos()+(dir.getyDir()*pers.getSpeed()), entityMaxY = pers.getPos().getyPos()+pers.getySize()+(dir.getyDir()*pers.getSpeed()), entityMinX = pers.getPos().getxPos()+(dir.getxDir()*pers.getSpeed()), entityMaxX = pers.getPos().getxPos()+pers.getxSize()+(dir.getxDir()*pers.getSpeed());
+//
+//            //on calcule sa "hitbox"
+//            if(persMaxX>entityMinX && persMaxX<entityMaxX && persMinY>entityMinY && persMinY<entityMaxY)
+//                return false;
+//            if(persMinX<entityMaxX && persMinX>entityMinX && persMaxY>entityMinY && persMinY<entityMaxY)
+//                return false;
+//            if (!map.getAllAttacks().contains(entity)) {
+//                int minY = entity.getPos().getyPos(), maxY = entity.getPos().getyPos() + entity.getySize(), minX = entity.getPos().getxPos(), maxX = entity.getPos().getxPos() + entity.getxSize();
+//                //si ((le y minimum/maximum du joueur est compris entre les y du props)ou(le y du personnage englobe les y du ennemi))et id du perso != id du props
+//                if (((persMinY >= minY && persMinY <= maxY) || (persMaxY >= minY && persMaxY <= maxY) || (persMaxY >= maxY && persMinY <= minY)) && entity.getId() != pers.getId()) {
+//                    //la même avec le X
+//                    if (((persMinX >= minX && persMinX <= maxX) || (persMaxX >= minX && persMaxX <= maxX) || (persMaxX >= maxX && persMinX <= minX)) && entity.getId() != pers.getId()) {
+//                        return false;
+//                    }
+//                }
+//            }
+//        }
     }
 
 

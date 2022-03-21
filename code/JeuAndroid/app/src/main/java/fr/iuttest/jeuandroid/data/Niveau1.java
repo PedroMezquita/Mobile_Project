@@ -18,19 +18,19 @@ public class Niveau1 extends Niveau{
         Props obstacle1 = new Props(100,500,600,700,"Mur haut");
         obstacle1.setRGB(0,0,0);
         obstacle1.setSprite(R.drawable.template_wall);
-        map.addEntity(obstacle1);
+        map.addProps(obstacle1);
         Props obstacle2 = new Props(500,100,490,110,"Mur droite");
         obstacle2.setRGB(0,0,0);
         obstacle2.setSprite(R.drawable.template_wall);
-        map.addEntity(obstacle2);
+        map.addProps(obstacle2);
         Props obstacle3 = new Props(100,500,660,490,"Mur bas");
         obstacle3.setRGB(0,0,0);
         obstacle3.setSprite(R.drawable.template_wall);
-        map.addEntity(obstacle3);
+        map.addProps(obstacle3);
         Props obstacle4 = new Props(500,100,90,100,"Mur gache");
         obstacle4.setRGB(0,0,0);
         obstacle4.setSprite(R.drawable.template_wall);
-        map.addEntity(obstacle4);
+        map.addProps(obstacle4);
 //        Personnage joueur = new Joueur(1,10,10,5,"mec", /* 21*/ 201, /* 21*/201,20,20,"joueur", 1,0,0); //Le joueur charge avant les props
 //        joueur.setSprite(R.drawable.template_character);
         AttackPattern atqJoueur = new AttackPattern(25, 2, 10, 25, "trait", 50);

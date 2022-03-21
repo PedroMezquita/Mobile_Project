@@ -13,6 +13,7 @@ import fr.iuttest.jeuandroid.model.jeu.attack.Attack;
 import fr.iuttest.jeuandroid.model.jeu.entities.Ennemi;
 import fr.iuttest.jeuandroid.model.jeu.entities.Entite;
 import fr.iuttest.jeuandroid.model.jeu.entities.Joueur;
+import fr.iuttest.jeuandroid.model.jeu.entities.Props;
 
 //
 public class Map {
@@ -24,6 +25,8 @@ public class Map {
     private ArrayList<Entite> newEntities = new ArrayList<Entite>();
     //liste des attaques sur la carte
     private ArrayList<Attack> allAttacks = new ArrayList<Attack>();
+    //Liste blocs
+    private ArrayList<Props> allBlocs = new ArrayList<>();
     //liste des ennemis sur la carte
     private ArrayList<Ennemi> allEnemi = new ArrayList<Ennemi>();
     //liste des sprite des ennemis
@@ -52,6 +55,7 @@ public class Map {
         return allEntities;
     }
 
+    @Override
     public String toString() {
         return allEntities.toString();
     }
@@ -114,6 +118,11 @@ public class Map {
         addEntity(enmy);
     }
 
+    public void addProps(Props props){
+        allBlocs.add(props);
+        addEntity(props);
+    }
+
     public void removeEnemy (Ennemi enemy){
         allEnemi.remove(enemy);
         setNbEnnemis(getNbEnnemis()-1);
@@ -164,7 +173,7 @@ public class Map {
     public ArrayList<Integer> getAllSpriteEnnemi() {
         return allSpriteEnnemi;
     }
-
+    public ArrayList<Props> getAllBlocs(){ return (ArrayList<Props>) allBlocs.clone();}
     public void setAllSpriteEnnemi(ArrayList<Integer> allSpriteEnnemi) {
         this.allSpriteEnnemi = allSpriteEnnemi;
     }

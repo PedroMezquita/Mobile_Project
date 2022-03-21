@@ -20,7 +20,7 @@ public class CollisioneurVisionEnnemi implements CollisioneurMouvement{
     public boolean testCollision(Personnage pers, Direction dir) {
         int persMinY = pers.getPos().getyPos()+pers.getySize()/2+pers.getAttaque().getySize()/2, persMaxY = pers.getPos().getyPos()+pers.getySize()/2-pers.getAttaque().getySize()/2, persMinX = pers.getPos().getxPos()+pers.getxSize()/2-pers.getAttaque().getxSize()/2, persMaxX = pers.getPos().getxPos()+pers.getxSize()/2+pers.getAttaque().getxSize()/2;
         //on trouve le joueur dans la map
-        Personnage joueur = map.getJoueur();
+        Personnage joueur = pers;
         //Si la partie est finie les ennemis ne doivent plus bouger
         if (joueur == null) {return true;}
         //calcul de la hitbox du joueur

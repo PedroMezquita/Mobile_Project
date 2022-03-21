@@ -59,12 +59,6 @@ public class GameActivity extends AppCompatActivity {
         //SUPER IDEE DU PROF: Faire un observeur pour notifier l'Image View lors qu'on change l'objet
 
         layout_jeu.setOnTouchListener((view, motionEvent) -> {
-            /*
-            // Faire suivre le personage au doigt de l'utilisateur, j'aurais prefere qu'on puisse juste le faire bouger sans mettre le doigt sur lui mais bon, au moins ça marche
-            perso.setX(motionEvent.getX() - perso.getWidth()/2);
-            perso.setY(motionEvent.getY() - perso.getHeight()/2);
-            //
-            */
 
             final int action = motionEvent.getAction();
 
@@ -76,29 +70,18 @@ public class GameActivity extends AppCompatActivity {
                 case MotionEvent.ACTION_MOVE:
                     if(motionEvent.getX() < initialPositionx-100) {
                         gameManager.deplacerGauche();
-//                        manager.updatePositionImages(perso);
-//                        persoView.setX(persoView.getX()-5); //a changer par des deplaceurs
                     }else if(motionEvent.getX() > initialPositionx+100) {
-
                         gameManager.deplacerDroite();
-//                        manager.updatePositionImages(perso);
-//                        persoView.setX(persoView.getX()+5);                 //a changer par des deplaceurs
                     }
                     if(motionEvent.getY() > initialPositiony+100) {
-
                         gameManager.deplacerBas();
-//                        manager.updatePositionImages(perso);
- //                       persoView.setY(persoView.getY()+5);                 //a changer par des deplaceurs
-                    }else if(motionEvent.getY() < initialPositiony-100) {
+                    }
+                    else if(motionEvent.getY() < initialPositiony-100) {
 
                         gameManager.deplacerHaut();
-//                        manager.updatePositionImages(perso);
-   //                     persoView.setY(persoView.getY()-5);                 //a changer par des deplaceurs
                     }
             }
-
             return true;
-
         });
 
     }
@@ -112,11 +95,13 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
+        gameManager.interrupt();
     }
 
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        gameManager.interrupt();
     }
 }

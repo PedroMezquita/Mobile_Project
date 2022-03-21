@@ -209,4 +209,9 @@ public class GameManager implements Observer{
     public void update() {
         updateAttaque();
     }
+
+    public void resume() {
+        beep.repprendre();
+        beepEnnemi.repprendre();
+    }
 }

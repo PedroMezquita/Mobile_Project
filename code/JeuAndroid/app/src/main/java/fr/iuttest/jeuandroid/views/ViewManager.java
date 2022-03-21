@@ -119,28 +119,26 @@ public class ViewManager implements Observer {
         if(firstEnemi != null){
             if(firstEnemi.getX() < joueur.getX()) {
                 xpos = -1;
-    //                        manager.updatePositionImages(perso);
-    //                        persoView.setX(persoView.getX()-5); //a changer par des deplaceurs
-            }else if(firstEnemi.getX() > joueur.getX()) {
-
+                //manager.updatePositionImages(perso);
+                //persoView.setX(persoView.getX()-5); //a changer par des deplaceurs
+            }
+            else if(firstEnemi.getX() > joueur.getX()) {
                 xpos = 1;
-    //                        manager.updatePositionImages(perso);
-    //                        persoView.setX(persoView.getX()+5);                 //a changer par des deplaceurs
+                //manager.updatePositionImages(perso);
+                //persoView.setX(persoView.getX()+5);                 //a changer par des deplaceurs
             }
             if(firstEnemi.getY() > joueur.getY()) {
-
                 ypos = 1;
-    //                        manager.updatePositionImages(perso);
-                //                       persoView.setY(persoView.getY()+5);                 //a changer par des deplaceurs
-            }else if(firstEnemi.getY() < joueur.getY()) {
-
+                //manager.updatePositionImages(perso);
+                //persoView.setY(persoView.getY()+5);                 //a changer par des deplaceurs
+            }
+            else if(firstEnemi.getY() < joueur.getY()) {
                 ypos = -1;
-    //                        manager.updatePositionImages(perso);
-                //                     persoView.setY(persoView.getY()-5);                 //a changer par des deplaceurs
+                //manager.updatePositionImages(perso);
+                //persoView.setY(persoView.getY()-5);                 //a changer par des deplaceurs
             }
         }
         return new Direction(xpos, ypos);
-
     }
 
 
@@ -163,7 +161,5 @@ public class ViewManager implements Observer {
             SoundManager pium = allSound.get(index);
             pium.start();
         }
-
-
     }
 }

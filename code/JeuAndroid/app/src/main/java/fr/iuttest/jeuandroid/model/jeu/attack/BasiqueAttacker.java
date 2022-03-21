@@ -41,8 +41,6 @@ public class BasiqueAttacker implements Attacker{
         if (dir.getxDir() == 1){
             int atqXPos = pers.getPos().getxPos()+pers.getxSize()+1;
             int atqYPos = pers.getPos().getyPos()+(pers.getySize()/2)-(pers.getAttaque().getxSize()/2);
-            System.out.println(pers.getAttaque().getDegats());
-            System.out.println(pers.getAtkPnt());
             Attack atk = new Attack(pers.getAttaque().getLifeTime(), pers.getAttaque().getDegats()*pers.getAtkPnt(), atqXPos, atqYPos, pers.getAttaque().getySize(), pers.getAttaque().getxSize(), pers.getAttaque().getId(), pers, dir);
             atk.setSprite(pers.getAttaque().getSprite());
             atk.setRGB(pers.getAttaque().getRedColor(),pers.getAttaque().getGreenColor(),pers.getAttaque().getBlueColor());
