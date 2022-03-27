@@ -63,12 +63,6 @@ public class ViewManager implements Observer {
 
 
 
-
-    public ViewManager(Joueur joueur, Ennemi ennemi){
-        this.joueur = joueur;
-        this.ennemi = ennemi;
-    }
-
     public ViewManager(Joueur joueur, ImageView joueurView, Map map, Activity parentActivity, FrameLayout layout_jeu, Context context, Niveau lvl) {
         this.joueur = joueur;
         this.joueurView = joueurView;
