@@ -24,6 +24,7 @@ import fr.iuttest.jeuandroid.model.jeu.Loop;
 import fr.iuttest.jeuandroid.model.jeu.Observer;
 import fr.iuttest.jeuandroid.model.jeu.PlayerObserver;
 import fr.iuttest.jeuandroid.model.jeu.SoundManager;
+import fr.iuttest.jeuandroid.model.jeu.attack.AtkUpdater;
 import fr.iuttest.jeuandroid.model.jeu.attack.Attack;
 import fr.iuttest.jeuandroid.model.jeu.attack.AttackPattern;
 import fr.iuttest.jeuandroid.model.jeu.attack.BasiqueAttacker;
@@ -157,9 +158,16 @@ public class ViewManager implements Observer {
         Attack attaque = attacker.attack(joueur, detectEnemi());
         if (attaque != null) {
             map.addAttack(attaque);
+            updateAttaque();
             int index = (int) (Math.random() * allSound.size());
             SoundManager pium = allSound.get(index);
             pium.start();
         }
+    }
+
+    public void updateAttaque(){
+        joueur.getAttaque().setCurrentcooldown(joueur.getAttaque().getCurrentcooldown()-1);
+        AtkUpdater updater = new AtkUpdater();
+        updater.updateAttack(map);
     }
 }
