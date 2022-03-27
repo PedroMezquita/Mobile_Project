@@ -13,9 +13,6 @@ public class Loop extends Thread{
 
     //timer de la boucle
     int timer;
-    //JUSTE POUR DU TEST, A CHANGER LE PLUS TOT POSSIBLE ------------------------------------------------------------------------------------------------------------------
-    ImageView enemi;
-    ImageView perso;
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -23,11 +20,6 @@ public class Loop extends Thread{
     //liste des observeurs à notifier
     private ArrayList<Observer> listeObs = new ArrayList<Observer>();
 
-    public Loop (int timer, ImageView ennemi, ImageView perso){
-        this.timer = timer;
-        this.enemi = ennemi;
-        this.perso = perso;
-    }
 
     public Loop(int timer){
         this.timer = timer;

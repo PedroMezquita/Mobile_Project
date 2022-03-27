@@ -49,10 +49,6 @@ public abstract class Personnage extends Entite implements Serializable {
         this.currentHP = currentHP;
     }
 
-    public int currentHPProperty() {
-        return currentHP;
-    }
-
     public int getSpeed() {
         return speed;
     }
