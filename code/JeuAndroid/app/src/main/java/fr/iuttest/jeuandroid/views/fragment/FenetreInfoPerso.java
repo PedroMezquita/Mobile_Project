@@ -30,13 +30,19 @@ public class FenetreInfoPerso extends Fragment {
     }
 
 
-    private void updateData() {
+    public void updateData() {
         if(getActivity() != null){
             if(activiteParente.getPersoEnCours() != null){
                 ((TextView) getActivity().findViewById(R.id.stat_perso1)).setText(valueOf(activiteParente.getPersoEnCours().getName()));
                 ((TextView) getActivity().findViewById(R.id.stat_perso2)).setText(getString(R.string.Attaque)+valueOf(activiteParente.getPersoEnCours().getAtkPnt()));
                 ((TextView) getActivity().findViewById(R.id.stat_perso3)).setText(getString(R.string.HP)+valueOf(activiteParente.getPersoEnCours().getMaxHP()));
                 ((TextView) getActivity().findViewById(R.id.stat_perso4)).setText(getString(R.string.Vitesse)+valueOf(activiteParente.getPersoEnCours().getSpeed()));
+            }
+            else{
+                ((TextView) getActivity().findViewById(R.id.stat_perso1)).setText("----");
+                ((TextView) getActivity().findViewById(R.id.stat_perso2)).setText("----");
+                ((TextView) getActivity().findViewById(R.id.stat_perso3)).setText("----");
+                ((TextView) getActivity().findViewById(R.id.stat_perso4)).setText("----");
             }
         }
     }

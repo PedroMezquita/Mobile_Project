@@ -62,7 +62,7 @@ public class GameManager implements Observer{
     }
 
     //charge le premier niveau et les controles
-    public void init (Activity parentActivity, FrameLayout layou_jeu){
+    private void init (Activity parentActivity, FrameLayout layou_jeu){
 
         lvl = new Niveau1();
         lvl.getLast().setNiveauSuivant(new Niveau2());
@@ -80,7 +80,7 @@ public class GameManager implements Observer{
     }
 
     //instancie la boucle de jeu
-    public void initLoop (){
+    private void initLoop (){
 // Pour l'instant faut le laisser comme ça parce qu'on a l'autre truc degueulasse
         beep = new Loop(50);
         beep.start();
@@ -97,8 +97,6 @@ public class GameManager implements Observer{
     public Map getMap() {
         return map;
     }
-
-
 
 
     //appel le déplaceur pour déplacer le joueur à droite

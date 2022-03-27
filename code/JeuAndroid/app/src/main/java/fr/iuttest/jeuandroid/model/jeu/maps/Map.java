@@ -36,10 +36,6 @@ public class Map {
     //nombre d'enemis
     private int nbEnemis; //integer property a la base
 
-    private int width;
-    private int height;
-    private int image;
-
     public void addEntity(Entite entity) {
         allEntities.add(entity);
         newEntities.add(entity);
@@ -81,26 +77,6 @@ public class Map {
         this.nbEntite = nbEntite;
     }
 
-    public int getHeight() {
-        return height;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
-        if (this.height < 500)
-            this.height = 500;
-    }
-
-    public int getWidth() {
-        return width;
-    }
-
-    public void setWidth(int width) {
-        this.width = width;
-        if (this.width < 500)
-            this.width = 500;
-    }
-
     public void removeEntity (Entite entity){
         allEntities.remove(entity);
         removedEntities.add(entity);
@@ -131,14 +107,6 @@ public class Map {
 
     public ArrayList<Attack> getAllAttacks() {
         return (ArrayList<Attack>) allAttacks.clone();
-    }
-
-    public int getImage() {
-        return image;
-    }
-
-    public void setImage(int image) {
-        this.image = image;
     }
 
     public int getNbEnnemis() { return nbEnemis; }

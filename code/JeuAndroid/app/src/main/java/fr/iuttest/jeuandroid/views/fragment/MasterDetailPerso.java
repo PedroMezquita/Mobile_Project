@@ -1,6 +1,7 @@
 package fr.iuttest.jeuandroid.views.fragment;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 
@@ -29,14 +30,28 @@ public class MasterDetailPerso extends AppCompatActivity {
                 .setReorderingAllowed(true)
                 .add(R.id.container_fragment, FragmentMaster.class, null)
                 .commit();
+
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            getSupportFragmentManager().beginTransaction()
+                    .setReorderingAllowed(true)
+                    .replace(R.id.container_de_detail, FenetreInfoPerso.class, null)
+                    .commit();
+        }
     }
 
     public void setPersoEnCours(Joueur persoEnCours) {
-        if(this.persoEnCours != persoEnCours && persoEnCours!= null){
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.container_fragment, FenetreInfoPerso.class, null)
-                    .setReorderingAllowed(true)
-                    .commit();
+        if(this.persoEnCours != persoEnCours) {
+            if (persoEnCours != null) {
+                this.persoEnCours = persoEnCours;
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                    ((FenetreInfoPerso) getSupportFragmentManager().findFragmentById(R.id.container_de_detail)).updateData();
+                } else {
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.container_fragment, FenetreInfoPerso.class, null)
+                            .setReorderingAllowed(true)
+                            .commit();
+                }
+            }
         }
         this.persoEnCours = persoEnCours;
     }
@@ -54,6 +69,7 @@ public class MasterDetailPerso extends AppCompatActivity {
         intent.putExtra("persoEnCours", persoEnCours);
         startActivity(intent);
     }
+
 
     public void clickRetourMenu(View view){finish();}
 
