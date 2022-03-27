@@ -71,7 +71,7 @@ public class GameManager implements Observer{
         lvl.getLast().setNiveauSuivant(new Niveau5());
         map = lvl.load();
 
-        monViewManager = new ViewManager(joueur, joueurView, map, parentActivity, layou_jeu, context);
+        monViewManager = new ViewManager(joueur, joueurView, map, parentActivity, layou_jeu, context, lvl);
 
         collisioneurCarre = new CollisioneurCarre(map);
         deplacerBasique = new DeplacerBasique(collisioneurCarre);

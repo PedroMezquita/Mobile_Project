@@ -19,6 +19,7 @@ import java.util.Observable;
 import java.util.Set;
 
 import fr.iuttest.jeuandroid.R;
+import fr.iuttest.jeuandroid.data.Niveau;
 import fr.iuttest.jeuandroid.model.jeu.Direction;
 import fr.iuttest.jeuandroid.model.jeu.Loop;
 import fr.iuttest.jeuandroid.model.jeu.Observer;
@@ -48,6 +49,7 @@ public class ViewManager implements Observer {
 
     private FrameLayout layout_jeu;
 
+    private Niveau lvl;
 
     private Map map;
 
@@ -67,7 +69,7 @@ public class ViewManager implements Observer {
         this.ennemi = ennemi;
     }
 
-    public ViewManager(Joueur joueur, ImageView joueurView, Map map, Activity parentActivity, FrameLayout layout_jeu, Context context) {
+    public ViewManager(Joueur joueur, ImageView joueurView, Map map, Activity parentActivity, FrameLayout layout_jeu, Context context, Niveau lvl) {
         this.joueur = joueur;
         this.joueurView = joueurView;
         this.map= map;
@@ -86,6 +88,8 @@ public class ViewManager implements Observer {
         allSound.add(sound3);
         allSound.add(sound4);
         allSound.add(sound5);
+
+        this.lvl = lvl;
 
         chargementMap(map);
 
@@ -163,6 +167,11 @@ public class ViewManager implements Observer {
             SoundManager pium = allSound.get(index);
             pium.start();
         }
+        if(firstEnemi.getCurrentHP() <= 0){
+            if (niveauSuivant()){
+                //chargementMap(map);
+            }
+        }
     }
 
     public void updateAttaque(){
@@ -170,4 +179,15 @@ public class ViewManager implements Observer {
         AtkUpdater updater = new AtkUpdater();
         updater.updateAttack(map);
     }
+
+    public Boolean niveauSuivant(){
+        if (lvl.getNiveauSuivant() != null) {
+            map.removeAll();
+            lvl = lvl.getNiveauSuivant();
+            map = lvl.load();
+            return true;
+        }
+        return false;
+    }
+
 }
